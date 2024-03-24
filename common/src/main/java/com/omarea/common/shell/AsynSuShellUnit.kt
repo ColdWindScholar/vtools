@@ -100,20 +100,4 @@ class AsynSuShellUnit(var handler: Handler) {
         }).start()
     }
 
-    fun waitFor(next: Runnable) {
-        if (process == null)
-            return
-
-        val outputStream = process!!.outputStream
-        val writer = outputStream.bufferedWriter()
-        writer.write("exit\nexit\nexit\n")
-        writer.write("\n\n")
-        writer.flush()
-        Thread(Runnable {
-            process!!.waitFor()
-            destroy()
-            handler.sendMessage(handler.obtainMessage(10, true))
-            next.run()
-        }).start()
-    }
 }

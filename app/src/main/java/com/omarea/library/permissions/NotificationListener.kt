@@ -12,11 +12,8 @@ import androidx.core.app.NotificationManagerCompat
  */
 class NotificationListener {
     fun getPermission(context: Context): Boolean {
-        val packageNames = NotificationManagerCompat.getEnabledListenerPackages(context);
-        if (packageNames.contains(context.getPackageName())) {
-            return true;
-        }
-        return false;
+        val packageNames = NotificationManagerCompat.getEnabledListenerPackages(context)
+        return packageNames.contains(context.packageName)
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)

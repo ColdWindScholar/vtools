@@ -70,7 +70,7 @@ class BlurBackground(private val activity: Activity) {
     }
 
     private fun refreshUI(i: Int) {
-        runOnUiThread(Runnable { dialogBg?.setImageAlpha(i) })
+        runOnUiThread(Runnable { dialogBg?.imageAlpha = i })
     }
 
     private fun hideBlur() {
@@ -115,10 +115,10 @@ class BlurBackground(private val activity: Activity) {
     }
 
     fun setScreenBgLight(dialog: Dialog) {
-        val window: Window? = dialog.getWindow()
+        val window: Window? = dialog.window
         val lp: WindowManager.LayoutParams
         if (window != null) {
-            lp = window.getAttributes()
+            lp = window.attributes
             lp.dimAmount = 0.2f
             window.setAttributes(lp)
         }

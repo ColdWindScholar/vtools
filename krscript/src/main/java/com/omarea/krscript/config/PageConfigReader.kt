@@ -29,14 +29,14 @@ class PageConfigReader {
     private var parentDir: String = ""
 
     constructor(context: Context, pageConfig: String, parentDir: String?) {
-        this.context = context;
-        this.pageConfig = pageConfig;
-        this.parentDir = parentDir ?: "";
+        this.context = context
+        this.pageConfig = pageConfig
+        this.parentDir = parentDir ?: ""
     }
 
     constructor(context: Context, pageConfigStream: InputStream) {
-        this.context = context;
-        this.pageConfigStream = pageConfigStream;
+        this.context = context
+        this.pageConfigStream = pageConfigStream
     }
 
     fun readConfigXml(): ArrayList<NodeInfoBase>? {
@@ -685,6 +685,6 @@ class PageConfigReader {
             vitualRootNode = NodeInfoBase(pageConfigAbsPath)
         }
 
-        return ScriptEnvironmen.executeResultRoot(context, scriptIn, vitualRootNode);
+        return ScriptEnvironmen.executeResultRoot(context, scriptIn, vitualRootNode)
     }
 }

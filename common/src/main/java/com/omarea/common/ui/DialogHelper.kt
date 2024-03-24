@@ -17,58 +17,57 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.omarea.common.R
 
 class DialogHelper {
-    class DialogButton(public val text: String, public val onClick: Runnable? = null, public val dismiss: Boolean = true) {
-    }
+    class DialogButton(val text: String, val onClick: Runnable? = null, val dismiss: Boolean = true)
 
     class DialogWrap(private val d: AlertDialog) {
-        public val context = dialog.context
+        val context = dialog.context
         private var mCancelable = true
-        public val isCancelable: Boolean
+        val isCancelable: Boolean
             get () {
                 return mCancelable
             }
 
-        public fun setCancelable(cancelable: Boolean): DialogWrap {
+        fun setCancelable(cancelable: Boolean): DialogWrap {
             mCancelable = cancelable
             d.setCancelable(cancelable)
 
             return this
         }
 
-        public fun setOnDismissListener(onDismissListener: DialogInterface.OnDismissListener): DialogWrap {
+        fun setOnDismissListener(onDismissListener: DialogInterface.OnDismissListener): DialogWrap {
             d.setOnDismissListener(onDismissListener)
 
             return this
         }
 
-        public val dialog: AlertDialog
+        val dialog: AlertDialog
             get() {
                 return d
             }
 
-        public fun dismiss() {
+        fun dismiss() {
             try {
                 d.dismiss()
             } catch (ex: Exception) {
             }
         }
 
-        public fun hide() {
+        fun hide() {
             try {
                 d.hide()
             } catch (ex: Exception) {
             }
         }
 
-        public val isShowing: Boolean
+        val isShowing: Boolean
             get() {
-                return d.isShowing()
+                return d.isShowing
             }
     }
 
     companion object {
         // 是否禁用模糊背景
-        public var disableBlurBg = false
+        var disableBlurBg = false
 
         fun animDialog(dialog: AlertDialog?): DialogWrap? {
             if (dialog != null && !dialog.isShowing) {
@@ -96,7 +95,7 @@ class DialogHelper {
             val alert = AlertDialog.Builder(context).setView(dialog)
             alert.setCancelable(true)
 
-            (dialog.findViewById(R.id.dialog_help_title) as TextView).run {
+            (dialog.findViewById<TextView>(R.id.dialog_help_title)!!).run {
                 if (title.isNotEmpty()) {
                     text = title
                     visibility = View.VISIBLE
@@ -105,7 +104,7 @@ class DialogHelper {
                 }
             }
 
-            (dialog.findViewById(R.id.dialog_help_info) as TextView).run {
+            (dialog.findViewById<TextView>(R.id.dialog_help_info)!!).run {
                 if (message.isNotEmpty()) {
                     text = message
                     visibility = View.VISIBLE
@@ -153,7 +152,7 @@ class DialogHelper {
                 if (title.isEmpty()) {
                     visibility = View.GONE
                 } else {
-                    setText(title)
+                    text = title
                 }
             }
 
@@ -161,7 +160,7 @@ class DialogHelper {
                 if (message.isEmpty()) {
                     visibility = View.GONE
                 } else {
-                    setText(message)
+                    text = message
                 }
             }
 

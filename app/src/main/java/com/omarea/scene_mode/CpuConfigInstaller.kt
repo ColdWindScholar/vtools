@@ -148,7 +148,7 @@ class CpuConfigInstaller {
                 }
             }
         }
-        return false;
+        return false
     }
 
     // 是否已经安装外部配置文件

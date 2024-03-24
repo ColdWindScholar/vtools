@@ -26,7 +26,7 @@ class AdapterBatteryStats(private var context: Context, private var list: List<B
     }
 
     override fun getCount(): Int {
-        return list.size ?: 0
+        return list.size
     }
 
     override fun getItem(position: Int): BatteryAvgStatus {

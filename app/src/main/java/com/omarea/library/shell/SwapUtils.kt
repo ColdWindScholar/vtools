@@ -301,7 +301,7 @@ class SwapUtils(private val context: Context) {
             for (row in procSwaps) {
                 if (row.startsWith("/swapfile ") || row.startsWith("/data/swapfile ") || (loopName != null && row.contains(loopName))) {
                     val cols = row.split(" ").toMutableList()
-                    val sizeStr = cols[2]
+                    cols[2]
                     val usedStr = cols[3]
 
                     try {
@@ -319,7 +319,7 @@ class SwapUtils(private val context: Context) {
             for (row in procSwaps) {
                 if (row.startsWith("/block/zram0 ") || row.startsWith("/dev/block/zram0 ")) {
                     val cols = row.split(" ").toMutableList()
-                    val sizeStr = cols[2]
+                    cols[2]
                     val usedStr = cols[3]
 
                     try {

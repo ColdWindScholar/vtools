@@ -10,11 +10,11 @@ import android.view.View;
 public class MyChatView extends View {
 
     //-------------必须给的数据相关-------------
-    private String[] str = new String[]{"一年级", "二年级", "三年级", "四年级", "五年级", "六年级"};
+    private final String[] str = new String[]{"一年级", "二年级", "三年级", "四年级", "五年级", "六年级"};
     //分配比例大小，总比例大小为100,由于经过运算后最后会是99.55左右的数值，导致圆不能够重合，会留出点空白，所以这里的总比例大小我们用101
-    private int[] strPercent = new int[]{10, 25, 18, 41, 2, 5};
+    private final int[] strPercent = new int[]{10, 25, 18, 41, 2, 5};
     //圆的直径
-    private float mRadius = 300;
+    private final float mRadius = 300;
     //-------------画笔相关-------------
     //圆环的画笔
     private Paint cyclePaint;
@@ -24,7 +24,7 @@ public class MyChatView extends View {
     private Paint labelPaint;
     //-------------颜色相关-------------
     //边框颜色和标注颜色
-    private int[] mColor = new int[]{0xFFF06292, 0xFF9575CD, 0xFFE57373, 0xFF4FC3F7, 0xFFFFF176, 0xFF81C784};
+    private final int[] mColor = new int[]{0xFFF06292, 0xFF9575CD, 0xFFE57373, 0xFF4FC3F7, 0xFFFFF176, 0xFF81C784};
     //-------------View相关-------------
     //View自身的宽和高
     private int mHeight;

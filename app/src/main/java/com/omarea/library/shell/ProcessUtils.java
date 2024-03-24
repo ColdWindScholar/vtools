@@ -146,7 +146,7 @@ public class ProcessUtils {
         if (DETAIL_COMMAND != null) {
             String r = KeepShellPublic.INSTANCE.doCmdSync(DETAIL_COMMAND + pid);
             Log.d("Scene-SWAP", DETAIL_COMMAND + pid);
-            Log.d("Scene-SWAP", "" + r);
+            Log.d("Scene-SWAP", r);
             String[] rows = r.split("\n");
             if (rows.length > 1) {
                 ProcessInfo row = readRow(rows[1].trim());

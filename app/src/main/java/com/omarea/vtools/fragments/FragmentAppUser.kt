@@ -47,7 +47,7 @@ class FragmentAppUser(private val myHandler: Handler) : androidx.fragment.app.Fr
                 return@OnItemLongClickListener true
             val adapter = (parent.adapter as HeaderViewListAdapter).wrappedAdapter
             val app = adapter.getItem(position - 1) as AppInfo
-            DialogSingleAppOptions(activity!!, app, myHandler!!).showSingleAppOptions()
+            DialogSingleAppOptions(activity!!, app, myHandler).showSingleAppOptions()
             true
         }
 
@@ -69,9 +69,9 @@ class FragmentAppUser(private val myHandler: Handler) : androidx.fragment.app.Fr
         }
 
         if (selectedItems.size == 1) {
-            DialogSingleAppOptions(activity, selectedItems.first(), myHandler!!).showSingleAppOptions()
+            DialogSingleAppOptions(activity, selectedItems.first(), myHandler).showSingleAppOptions()
         } else {
-            DialogAppOptions(activity, selectedItems, myHandler!!).selectUserAppOptions()
+            DialogAppOptions(activity, selectedItems, myHandler).selectUserAppOptions()
         }
     }
 
@@ -98,14 +98,14 @@ class FragmentAppUser(private val myHandler: Handler) : androidx.fragment.app.Fr
                 lv.adapter = adapterObj
                 lv.onItemClickListener = OnItemClickListener { list, itemView, postion, _ ->
                     if (postion == 0) {
-                        val checkBox = itemView.findViewById(R.id.select_state_all) as CheckBox
+                        val checkBox: CheckBox = itemView.findViewById(R.id.select_state_all)
                         checkBox.isChecked = !checkBox.isChecked
                         if (adapter.get() != null) {
                             adapter.get()!!.setSelecteStateAll(checkBox.isChecked)
                             adapter.get()!!.notifyDataSetChanged()
                         }
                     } else {
-                        val checkBox = itemView.findViewById(R.id.select_state) as CheckBox
+                        val checkBox: CheckBox = itemView.findViewById(R.id.select_state)
                         checkBox.isChecked = !checkBox.isChecked
                         val all = lv.findViewById<CheckBox>(R.id.select_state_all)
                         if (adapter.get() != null) {
@@ -122,7 +122,7 @@ class FragmentAppUser(private val myHandler: Handler) : androidx.fragment.app.Fr
         }
     }
 
-    public var searchText: String
+    var searchText: String
         get () {
             return keywords
         }

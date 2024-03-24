@@ -27,11 +27,6 @@ public class NavItem extends LinearLayout {
         setLayout(context, attrs);
     }
 
-    public NavItem(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        setLayout(context, attrs);
-    }
-
     private void setLayout(Context context, AttributeSet attrs) {
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.NavItem);
 

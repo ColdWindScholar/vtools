@@ -12,16 +12,16 @@ public class GpuUtils {
     private static String GPU_LOAD_PATH = null;
     private static String GPU_FREQ_CMD = null;
 
-    private static String GPU_MEMORY_CMD = null;
-    private static String GPU_MEMORY_CMD1 = "cat /proc/mali/memory_usage | grep \"Total\" | cut -f2 -d \"(\" | cut -f1 -d \" \"";
-    private static String GPU_MEMORY_CMD2 = null;
+    private static final String GPU_MEMORY_CMD = null;
+    private static final String GPU_MEMORY_CMD1 = "cat /proc/mali/memory_usage | grep \"Total\" | cut -f2 -d \"(\" | cut -f1 -d \" \"";
+    private static final String GPU_MEMORY_CMD2 = null;
 
     private static String platform;
     private static boolean kgsGM = true;
     private static Boolean $isAdrenoGPU = null;
     private static Boolean $isMaliGPU = null;
-    private static String gpuParamsDirAdreno = "/sys/class/kgsl/kgsl-3d0";
-    private static String gpuParamsDirMali = "/sys/class/devfreq/gpufreq";
+    private static final String gpuParamsDirAdreno = "/sys/class/kgsl/kgsl-3d0";
+    private static final String gpuParamsDirMali = "/sys/class/devfreq/gpufreq";
     private static String gpuParamsDir = null;
 
     private static boolean isMTK() {

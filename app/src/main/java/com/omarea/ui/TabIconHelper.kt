@@ -22,7 +22,7 @@ class TabIconHelper(private var tabHost: TabHost, private var activity: Activity
         val textView = layout.findViewById<TextView>(R.id.ItemTitle)
         val tabId = "tab_" + views.size
 
-        textView.setText(text)
+        textView.text = text
 
         // val tintIcon = DrawableCompat.wrap(view.drawable)
         // val csl = getResources().getColorStateList(R.color.colorAccent)

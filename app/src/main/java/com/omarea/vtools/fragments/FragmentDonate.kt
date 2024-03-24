@@ -56,7 +56,7 @@ class FragmentDonate : androidx.fragment.app.Fragment() {
             cm.setPrimaryClip(mClipData)
             Toast.makeText(context!!, "红包码已复制！", Toast.LENGTH_SHORT).show()
             try {
-                val packageManager = context!!.getApplicationContext().getPackageManager()
+                val packageManager = context!!.applicationContext.packageManager
                 val intent = packageManager.getLaunchIntentForPackage("com.eg.android.AlipayGphone")
                 startActivity(intent)
             } catch (ex: Exception) {
@@ -71,7 +71,7 @@ class FragmentDonate : androidx.fragment.app.Fragment() {
             cm.setPrimaryClip(mClipData)
             Toast.makeText(context!!, "红包口令已复制！", Toast.LENGTH_SHORT).show()
             try {
-                val packageManager = context!!.getApplicationContext().getPackageManager()
+                val packageManager = context!!.applicationContext.packageManager
                 val intent = packageManager.getLaunchIntentForPackage("com.eg.android.AlipayGphone")
                 startActivity(intent)
             } catch (ex: Exception) {

@@ -66,7 +66,6 @@ public class BatteryHistoryStore extends SQLiteOpenHelper {
         getWritableDatabase().beginTransaction();
         try {
             Cursor cursor = database.rawQuery("select max(temperature) AS io from battery_io", new String[]{});
-            ArrayList<BatteryAvgStatus> data = new ArrayList<>();
             int temperature = 0;
             while (cursor.moveToNext()) {
                 temperature = cursor.getInt(0);

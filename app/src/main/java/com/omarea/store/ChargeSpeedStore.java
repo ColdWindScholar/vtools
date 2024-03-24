@@ -156,16 +156,5 @@ public class ChargeSpeedStore extends SQLiteOpenHelper {
         }
     }
 
-    public boolean handleConflics(int capacity) {
-        try {
-            SQLiteDatabase database = getWritableDatabase();
-            database.execSQL("delete from charge_history where capacity >= ?", new Object[]{
-                    capacity
-            });
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
-    }
 }
 

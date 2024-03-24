@@ -66,7 +66,7 @@ class ActivityCpuControl : ActivityBase() {
 
         supportedGPU = GpuUtils.supported()
         adrenoGPU = GpuUtils.isAdrenoGPU()
-        qualcommThermalSupported = thermalControlUtils.isSupported()
+        qualcommThermalSupported = thermalControlUtils.isSupported
 
         if (supportedGPU) {
             adrenoGovernors = GpuUtils.getGovernors()
@@ -560,9 +560,9 @@ class ActivityCpuControl : ActivityBase() {
             }
 
             if (qualcommThermalSupported) {
-                status.coreControl = thermalControlUtils.getCoreControlState()
-                status.vdd = thermalControlUtils.getVDDRestrictionState()
-                status.msmThermal = thermalControlUtils.getTheramlState()
+                status.coreControl = thermalControlUtils.coreControlState
+                status.vdd = thermalControlUtils.vddRestrictionState
+                status.msmThermal = thermalControlUtils.theramlState
             }
 
             status.exynosHmpUP = CpuFrequencyUtil.exynosHmpUP
@@ -651,7 +651,7 @@ class ActivityCpuControl : ActivityBase() {
 
     private fun setText(view: TextView?, text: String) {
         if (view != null && view.text != text) {
-            view.setText(text)
+            view.text = text
         }
     }
 

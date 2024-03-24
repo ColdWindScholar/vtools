@@ -8,6 +8,7 @@ import com.omarea.data.IEventReceiver
 import com.omarea.store.ChargeSpeedStore
 import com.omarea.store.SpfConfig
 import java.util.*
+import kotlin.math.abs
 
 class ChargeCurve(context: Context) : IEventReceiver {
     private val storage = ChargeSpeedStore(context)
@@ -81,7 +82,7 @@ class ChargeCurve(context: Context) : IEventReceiver {
                     )
             batteryManager.getIntProperty(BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE)
 
-            if (Math.abs(GlobalStatus.batteryCurrentNow) > 100) {
+            if (abs(GlobalStatus.batteryCurrentNow) > 100) {
                 storage.addHistory(
                         GlobalStatus.batteryCurrentNow,
                         GlobalStatus.batteryCapacity,

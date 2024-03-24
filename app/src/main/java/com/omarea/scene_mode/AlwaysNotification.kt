@@ -51,7 +51,7 @@ internal class AlwaysNotification(
     private var batteryManager = context.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
     private val batteryUtils = BatteryUtils()
 
-    private fun getAppName(packageName: String): CharSequence? {
+    private fun getAppName(packageName: String): CharSequence {
         try {
             return context.packageManager.getPackageInfo(packageName, 0).applicationInfo.loadLabel(context.packageManager)
         } catch (ex: Exception) {
@@ -104,7 +104,7 @@ internal class AlwaysNotification(
             // 状态
             val batteryStatus = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_STATUS)
             if (batteryStatus != BatteryManager.BATTERY_STATUS_UNKNOWN) {
-                GlobalStatus.batteryStatus = batteryStatus;
+                GlobalStatus.batteryStatus = batteryStatus
             }
         }
 
@@ -138,7 +138,7 @@ internal class AlwaysNotification(
         var modeImage = BitmapFactory.decodeResource(context.resources, getModImage(mode))
 
         try {
-            updateBatteryStatus();
+            updateBatteryStatus()
 
             batteryIO = "${GlobalStatus.batteryCurrentNow}mA"
             batteryTemp = "${GlobalStatus.temperatureCurrent}°C"

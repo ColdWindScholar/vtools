@@ -1,8 +1,5 @@
 package com.omarea.library.device;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -30,25 +27,4 @@ public class MiuiThermalAESUtil {
         return cipher.doFinal(buffer);
     }
 
-    private static byte[] decryptFile(String path) throws Exception {
-        FileInputStream input = new FileInputStream(path);
-        byte[] buffer = new byte[input.available()];
-        input.read(buffer);
-
-        return decrypt(buffer);
-    }
-
-    private static void encryptFile(String path) throws Exception {
-        FileInputStream input = new FileInputStream(path);
-        byte[] buffer = new byte[input.available()];
-        input.read(buffer);
-
-        byte[] result = encrypt(buffer);
-
-        String outputPath = path.replace("_decrypted.conf", "");
-        System.out.println(outputPath);
-        input.close();
-        FileOutputStream outputStream = new FileOutputStream(outputPath);
-        outputStream.write(result);
-    }
 }

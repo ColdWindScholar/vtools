@@ -50,7 +50,8 @@ class ActivityTimingTask : ActivityBase() {
         // 时间选择
         taks_trigger_time.setOnClickListener {
             TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                taks_trigger_time.setText(String.format(getString(R.string.format_hh_mm), hourOfDay, minute))
+                taks_trigger_time.text =
+                    String.format(getString(R.string.format_hh_mm), hourOfDay, minute)
                 timingTaskInfo.triggerTimeMinutes = hourOfDay * 60 + minute
             }, timingTaskInfo.triggerTimeMinutes / 60, timingTaskInfo.triggerTimeMinutes % 60, true).show()
         }
@@ -130,7 +131,8 @@ class ActivityTimingTask : ActivityBase() {
             // 触发时间
             val hourOfDay = triggerTimeMinutes / 60
             val minute = triggerTimeMinutes % 60
-            taks_trigger_time.setText(String.format(getString(R.string.format_hh_mm), hourOfDay, minute))
+            taks_trigger_time.text =
+                String.format(getString(R.string.format_hh_mm), hourOfDay, minute)
 
             // 重复周期
             if (expireDate > 0) {
@@ -221,7 +223,4 @@ class ActivityTimingTask : ActivityBase() {
         finish()
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
 }

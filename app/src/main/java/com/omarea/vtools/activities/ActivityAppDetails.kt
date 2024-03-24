@@ -89,7 +89,7 @@ class ActivityAppDetails : ActivityBase() {
         }
 
         // 场景模式白名单开关
-        sceneBlackList = getSharedPreferences(SpfConfig.SCENE_BLACK_LIST, Context.MODE_PRIVATE);
+        sceneBlackList = getSharedPreferences(SpfConfig.SCENE_BLACK_LIST, Context.MODE_PRIVATE)
         scene_mode_allow.setOnClickListener {
             val checked = (it as Checkable).isChecked
             scene_mode_config.visibility = if (checked) View.VISIBLE else View.GONE
@@ -177,7 +177,7 @@ class ActivityAppDetails : ActivityBase() {
             if (!WriteSettings().getPermission(this)) {
                 WriteSettings().setPermission(this)
                 Toast.makeText(applicationContext, getString(R.string.scene_need_write_sys_settings), Toast.LENGTH_SHORT).show()
-                (it as Switch).isChecked = !(it as Switch).isChecked
+                (it as Switch).isChecked = !it.isChecked
                 return@setOnClickListener
             }
             val isSelected = (it as Switch).isChecked
@@ -193,7 +193,7 @@ class ActivityAppDetails : ActivityBase() {
             if (!WriteSettings().getPermission(this)) {
                 WriteSettings().setPermission(this)
                 Toast.makeText(applicationContext, getString(R.string.scene_need_write_sys_settings), Toast.LENGTH_SHORT).show()
-                (it as Switch).isChecked = !(it as Switch).isChecked
+                (it as Switch).isChecked = !it.isChecked
                 return@setOnClickListener
             }
             val isSelected = (it as Switch).isChecked
@@ -209,7 +209,7 @@ class ActivityAppDetails : ActivityBase() {
         app_details_icon.setOnClickListener {
             try {
                 saveConfig()
-                startActivity(getPackageManager().getLaunchIntentForPackage(app))
+                startActivity(packageManager.getLaunchIntentForPackage(app))
             } catch (ex: Exception) {
                 Toast.makeText(applicationContext, getString(R.string.start_app_fail), Toast.LENGTH_SHORT).show()
             }
@@ -386,11 +386,4 @@ class ActivityAppDetails : ActivityBase() {
         }
     }
 
-    override fun finish() {
-        super.finish()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
 }

@@ -27,7 +27,7 @@ import java.util.List;
 
 public class FreezeAppShortcutHelper {
     private static int requestCount = 0;
-    private String prefix = "*";
+    private final String prefix = "*";
 
     /**
      * 移除快捷方式（实践表明，不管什么版本的系统，基本上都不好使）

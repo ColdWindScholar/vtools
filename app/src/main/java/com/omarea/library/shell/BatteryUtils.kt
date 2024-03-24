@@ -22,7 +22,7 @@ class BatteryUtils {
          * 获取电池温度
          */
         // @Deprecated("", ReplaceWith("GlobalStatus"), DeprecationLevel.ERROR)
-        public fun getBatteryTemperature(): BatteryStatus {
+        fun getBatteryTemperature(): BatteryStatus {
             val batteryInfo = KeepShellPublic.doCmdSync("dumpsys battery")
             val batteryInfos = batteryInfo.split("\n")
 
@@ -466,28 +466,28 @@ class BatteryUtils {
         return KernelProrp.getProp("/sys/class/power_supply/usb/pd_active") == "1"
     }
 
-    public fun getChargeFull(): Int {
+    fun getChargeFull(): Int {
         val value = KernelProrp.getProp("/sys/class/power_supply/bms/charge_full")
         return if (Regex("^[0-9]+").matches(value)) (value.toInt() / 1000) else 0
     }
 
-    public fun setChargeFull(mAh: Int) {
+    fun setChargeFull(mAh: Int) {
         KernelProrp.setProp("/sys/class/power_supply/bms/charge_full", (mAh * 1000).toString())
     }
 
-    public fun getCpacity(): Int {
+    fun getCpacity(): Int {
         val value = KernelProrp.getProp("/sys/class/power_supply/battery/capacity")
         return if (Regex("^[0-9]+").matches(value)) value.toInt() else 0
     }
 
-    public fun setCapacity(capacity: Int) {
+    fun setCapacity(capacity: Int) {
         KernelProrp.setProp("/sys/class/power_supply/battery/capacity", capacity.toString())
     }
 
     private var kernelCapacitySupported: Boolean? = null
 
     // 从内核读取可以精确到0.01的电量，但有些内核数值是错的，所以需要和系统反馈的电量(approximate)比对，如果差距太大则认为内核数值无效，不再读取
-    public fun getKernelCapacity(approximate: Int): Float {
+    fun getKernelCapacity(approximate: Int): Float {
         if (kernelCapacitySupported == null) {
             kernelCapacitySupported = RootFile.fileExists("/sys/class/power_supply/bms/capacity_raw")
         }
@@ -503,13 +503,13 @@ class BatteryUtils {
                 }
                 // 如果和系统反馈的电量差距超过5%，则认为数值无效，不再读取
                 if (Math.abs(valueMA - approximate) > 5) {
-                    kernelCapacitySupported = false;
+                    kernelCapacitySupported = false
                     return -1f
                 } else {
                     return valueMA
                 }
             } catch (ex: java.lang.Exception) {
-                kernelCapacitySupported = false;
+                kernelCapacitySupported = false
             }
         }
         return -1f

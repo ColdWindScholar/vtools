@@ -10,7 +10,7 @@ import com.omarea.library.calculator.GetUpTime
 import com.omarea.model.TimingTaskInfo
 import com.omarea.store.TimingTaskStorage
 
-public class TimingTaskManager(private var context: Context) {
+class TimingTaskManager(private var context: Context) {
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private val taskListConfig = context.getSharedPreferences("scene_task_list", Context.MODE_PRIVATE)
 
@@ -24,7 +24,7 @@ public class TimingTaskManager(private var context: Context) {
         return pendingIntent
     }
 
-    public fun setTaskAndSave(timingTaskInfo: TimingTaskInfo) {
+    fun setTaskAndSave(timingTaskInfo: TimingTaskInfo) {
         TimingTaskStorage(context).save(timingTaskInfo)
 
         val taskId = timingTaskInfo.taskId
@@ -34,7 +34,7 @@ public class TimingTaskManager(private var context: Context) {
         taskListConfig.edit().putBoolean(taskId, timingTaskInfo.enabled).apply()
     }
 
-    public fun setTask(timingTaskInfo: TimingTaskInfo) {
+    fun setTask(timingTaskInfo: TimingTaskInfo) {
         // 如果任务启用了，立即添加到队列
         if (timingTaskInfo.enabled && (timingTaskInfo.expireDate < 1 || timingTaskInfo.expireDate > System.currentTimeMillis())) {
             val delay = GetUpTime(timingTaskInfo.triggerTimeMinutes).minutes.toLong() * 60 * 1000 // 下次执行
@@ -51,14 +51,14 @@ public class TimingTaskManager(private var context: Context) {
         }
     }
 
-    public fun updateAlarmManager() {
+    fun updateAlarmManager() {
         val tasks = listTask()
         tasks.forEach {
             setTask(it)
         }
     }
 
-    public fun listTask(): ArrayList<TimingTaskInfo> {
+    fun listTask(): ArrayList<TimingTaskInfo> {
         val taskList = ArrayList<TimingTaskInfo>()
         val storage = TimingTaskStorage(context)
         taskListConfig.all.keys.forEach {
@@ -69,12 +69,12 @@ public class TimingTaskManager(private var context: Context) {
         return taskList
     }
 
-    public fun cancelTask(timingTaskInfo: TimingTaskInfo) {
+    fun cancelTask(timingTaskInfo: TimingTaskInfo) {
         val pendingIntent = getPendingIntent(timingTaskInfo)
         cancelTask(pendingIntent)
     }
 
-    public fun removeTask(timingTaskInfo: TimingTaskInfo) {
+    fun removeTask(timingTaskInfo: TimingTaskInfo) {
         cancelTask(timingTaskInfo)
         taskListConfig.edit().remove(timingTaskInfo.taskId).apply()
         val storage = TimingTaskStorage(context)
@@ -83,7 +83,7 @@ public class TimingTaskManager(private var context: Context) {
 
     /**
      */
-    public fun cancelTask(pendingIntent: PendingIntent): TimingTaskManager {
+    fun cancelTask(pendingIntent: PendingIntent): TimingTaskManager {
         alarmManager.cancel(pendingIntent)
         return this
     }

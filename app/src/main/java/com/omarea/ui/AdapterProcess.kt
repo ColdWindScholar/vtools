@@ -32,16 +32,16 @@ class AdapterProcess(private val context: Context,
     private val linuxIcon = context.getDrawable(R.drawable.process_linux)
 
     companion object {
-        val SORT_MODE_DEFAULT = 1;
-        val SORT_MODE_CPU = 4;
-        val SORT_MODE_RES = 8;
-        val SORT_MODE_PID = 16;
+        val SORT_MODE_DEFAULT = 1
+        val SORT_MODE_CPU = 4
+        val SORT_MODE_RES = 8
+        val SORT_MODE_PID = 16
 
-        val FILTER_ALL = 1;
-        val FILTER_OTHER = 4;
-        val FILTER_ANDROID_USER = 8;
-        val FILTER_ANDROID_SYSTEM = 16;
-        val FILTER_ANDROID = 32;
+        val FILTER_ALL = 1
+        val FILTER_OTHER = 4
+        val FILTER_ANDROID_USER = 8
+        val FILTER_ANDROID_SYSTEM = 16
+        val FILTER_ANDROID = 32
     }
 
     private val pm = context.packageManager
@@ -54,7 +54,7 @@ class AdapterProcess(private val context: Context,
     }
 
     override fun getCount(): Int {
-        return list.size ?: 0
+        return list.size
     }
 
     override fun getItem(position: Int): ProcessInfo {
@@ -167,14 +167,14 @@ class AdapterProcess(private val context: Context,
         val spannableString = SpannableString(str)
         var index = 0
         if (keywords.isEmpty()) {
-            return spannableString;
+            return spannableString
         }
         index = str.toLowerCase().indexOf(keywords.toLowerCase())
         if (index < 0)
             return spannableString
 
         spannableString.setSpan(ForegroundColorSpan(Color.parseColor("#0094ff")), index, index + keywords.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        return spannableString;
+        return spannableString
     }
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
@@ -208,7 +208,7 @@ class AdapterProcess(private val context: Context,
     }
 
     private fun updateRow(position: Int, view: View) {
-        val processInfo = getItem(position);
+        val processInfo = getItem(position)
         view.run {
             if (processInfo.friendlyName == processInfo.name) {
                 findViewById<TextView>(R.id.ProcessFriendlyName).text = keywordHightLight(processInfo.friendlyName)

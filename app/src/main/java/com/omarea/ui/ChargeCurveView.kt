@@ -63,7 +63,7 @@ class ChargeCurveView : View {
         val dpSize = dp2px(this.context, 1f)
         val innerPadding = dpSize * 24f
 
-        val maxIO = samples.map { abs(it.io) }.max()
+        val maxIO = samples.map { abs(it.io) }.maxOrNull()
         val maxAmpere = if (maxIO != null) (maxIO / 1000 + 1) else 10
 
         val ratioX = (this.width - innerPadding - innerPadding) * 1.0 / 100 // 横向比率

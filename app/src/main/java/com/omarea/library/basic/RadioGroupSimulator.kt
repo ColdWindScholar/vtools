@@ -25,7 +25,7 @@ class RadioGroupSimulator {
 
         // 如果发现有多个选中，自动取消多余的选中（只保留最后一个）
         val checkedItems = radios.filter { it.isChecked }
-        if (checkedItems.size > 0) {
+        if (checkedItems.isNotEmpty()) {
             val last = checkedItems.last()
             checkedItems.forEach {
                 if (it != last) {

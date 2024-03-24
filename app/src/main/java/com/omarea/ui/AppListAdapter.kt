@@ -126,14 +126,14 @@ class AppListAdapter(private val context: Context, apps: ArrayList<AppInfo>, pri
         val spannableString = SpannableString(str)
         var index = 0
         if (keywords.isEmpty()) {
-            return spannableString;
+            return spannableString
         }
-        index = str.toLowerCase().indexOf(keywords.toLowerCase());
+        index = str.toLowerCase().indexOf(keywords.toLowerCase())
         if (index < 0)
             return spannableString
 
         spannableString.setSpan(ForegroundColorSpan(Color.parseColor("#0094ff")), index, index + keywords.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        return spannableString;
+        return spannableString
     }
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
@@ -149,7 +149,7 @@ class AppListAdapter(private val context: Context, apps: ArrayList<AppInfo>, pri
                 imgView = convertView.findViewById(R.id.ItemIcon)
                 itemChecke = convertView.findViewById(R.id.select_state)
                 // itemPath = convertView.findViewById(R.id.ItemPath)
-                imgView!!.setTag(getItem(position).packageName)
+                imgView!!.tag = getItem(position).packageName
             }
             convertView.tag = viewHolder
         } else {

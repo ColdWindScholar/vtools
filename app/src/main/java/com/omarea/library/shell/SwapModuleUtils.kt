@@ -60,10 +60,6 @@ class SwapModuleUtils {
     private val extraFreeKbytes = "extra_free_kbytes"
     private val watermarkScaleFactor = "watermark_scale_factor"
 
-    private fun getProp(prop: String): String {
-        return KeepShellPublic.doCmdSync("cat /data/swap_config.conf | grep -v '^#' | grep \"^${prop}=\" | cut -f2 -d '='")
-    }
-
     private fun getProp(config: List<String>, prop: String): String {
         val result = config.find { it.startsWith("$prop=") }
         if (result != null) {

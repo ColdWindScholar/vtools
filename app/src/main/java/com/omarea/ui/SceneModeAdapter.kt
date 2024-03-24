@@ -1,7 +1,6 @@
 package com.omarea.ui
 
 import android.content.Context
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
@@ -13,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.omarea.common.ui.OverScrollListView
 import com.omarea.library.basic.AppInfoLoader
 import com.omarea.model.AppInfo
 import com.omarea.scene_mode.ModeSwitcher
@@ -21,8 +19,7 @@ import com.omarea.vtools.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.collections.HashMap
+import java.util.Locale
 
 /**
  * Created by Hello on 2018/01/26.
@@ -32,7 +29,6 @@ class SceneModeAdapter(private val context: Context, apps: ArrayList<AppInfo>, p
     private val appIconLoader = AppInfoLoader(context)
     private var keywords: String = ""
     private val list: ArrayList<AppInfo>?
-    private var pm: PackageManager? = null
 
     init {
         this.list = filterAppList(apps, keywords)
@@ -85,21 +81,6 @@ class SceneModeAdapter(private val context: Context, apps: ArrayList<AppInfo>, p
         }
         updateRow(position, convertView!!)
         return convertView
-    }
-
-    fun updateRow(position: Int, listView: OverScrollListView, appInfo: AppInfo) {
-        try {
-            val visibleFirstPosi = listView.firstVisiblePosition
-            val visibleLastPosi = listView.lastVisiblePosition
-
-            if (position >= visibleFirstPosi && position <= visibleLastPosi) {
-                list!![position] = appInfo
-                val view = listView.getChildAt(position - visibleFirstPosi)
-                updateRow(position, view)
-            }
-        } catch (ex: Exception) {
-
-        }
     }
 
     private fun getResourceColor(colorId: Int): Int {

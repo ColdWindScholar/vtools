@@ -26,8 +26,8 @@ class DialogCustomMAC(private var context: Context) {
     fun modifyMAC(mode: Int) {
         val layoutInflater = LayoutInflater.from(context)
         val dialog = layoutInflater.inflate(R.layout.dialog_addin_mac, null)
-        val macInput = dialog.findViewById(R.id.dialog_addin_mac_input) as EditText
-        val autoChange = dialog.findViewById(R.id.dialog_addin_mac_autochange) as CheckBox
+        val macInput: EditText = dialog.findViewById(R.id.dialog_addin_mac_input)
+        val autoChange: CheckBox = dialog.findViewById(R.id.dialog_addin_mac_autochange)
         macInput.setText(spf!!.getString(SpfConfig.GLOBAL_SPF_MAC, "ec:d0:9f:af:95:01"))
 
         autoChange.isChecked = spf!!.getInt(SpfConfig.GLOBAL_SPF_MAC_AUTOCHANGE_MODE, 0).equals(mode)

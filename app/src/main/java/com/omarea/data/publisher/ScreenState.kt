@@ -66,7 +66,7 @@ class ScreenState(private var context: Context) : BroadcastReceiver() {
         c.registerReceiver(this, IntentFilter(Intent.ACTION_SCREEN_ON))
         c.registerReceiver(this, IntentFilter(Intent.ACTION_USER_PRESENT))
 
-        return this;
+        return this
     }
 
     fun unRegister() {

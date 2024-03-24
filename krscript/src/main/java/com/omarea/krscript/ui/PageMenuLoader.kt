@@ -6,7 +6,7 @@ import com.omarea.krscript.model.PageMenuOption
 import com.omarea.krscript.model.PageNode
 
 class PageMenuLoader(private val applicationContext: Context, private val pageNode: PageNode) {
-    private var menuOptions:ArrayList<PageMenuOption>? = null;
+    private var menuOptions:ArrayList<PageMenuOption>? = null
 
     fun load (): ArrayList<PageMenuOption>? {
         pageNode.run {

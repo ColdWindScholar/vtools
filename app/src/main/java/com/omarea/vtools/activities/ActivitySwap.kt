@@ -749,8 +749,8 @@ class ActivitySwap : ActivityBase() {
             vmstat.run {
                 val text = StringBuilder()
                 try {
-                    var prop = "";
-                    var value = "";
+                    var prop = ""
+                    var value = ""
                     for (row in split("\n")) {
                         if (row.startsWith("pswpin")) {
                             prop = "从SWAP读出："

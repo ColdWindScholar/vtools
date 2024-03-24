@@ -87,7 +87,7 @@ class ActivityFpsChart : ActivityBase() {
         }
 
         // 处理loading、文件下载
-        vtools_online.setWebViewClient(object : WebViewClient() {
+        vtools_online.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 progressBarDialog.hideDialog()
@@ -108,11 +108,11 @@ class ActivityFpsChart : ActivityBase() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 return false
             }
-        })
+        }
 
         vtools_online.settings.javaScriptEnabled = true
-        vtools_online.settings.setLoadWithOverviewMode(true);
-        vtools_online.settings.setUseWideViewPort(true);
+        vtools_online.settings.loadWithOverviewMode = true
+        vtools_online.settings.useWideViewPort = true
         val fpsWatchStore = FpsWatchStore(this)
 
         val appInfoLoader = AppInfoLoader(context)
@@ -142,7 +142,7 @@ class ActivityFpsChart : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun toggleFpsToolbar(show: Boolean) {
+            fun toggleFpsToolbar(show: Boolean) {
                 Scene.post {
                     if (show) {
                         FloatFpsWatch(context).showPopupWindow()
@@ -161,17 +161,17 @@ class ActivityFpsChart : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun getFpsToolbarState(): String {
+            fun getFpsToolbarState(): String {
                 return FloatFpsWatch.show.toString()
             }
 
             @JavascriptInterface
-            public fun deleteSession(sessionId: Long) {
-                fpsWatchStore.deleteSession(sessionId);
+            fun deleteSession(sessionId: Long) {
+                fpsWatchStore.deleteSession(sessionId)
             }
 
             @JavascriptInterface
-            public fun getDeviceInfo(): String {
+            fun getDeviceInfo(): String {
                 val obj = JSONObject()
                 obj.put("soc", PlatformUtils().getCPUName())
                 obj.put("model", Build.MODEL)
@@ -181,7 +181,7 @@ class ActivityFpsChart : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun getSessions(): String {
+            fun getSessions(): String {
                 val sessions = fpsWatchStore.sessions()
                 val obj = JSONArray()
                 sessions.forEach {
@@ -196,7 +196,7 @@ class ActivityFpsChart : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun getSessionData(sessionId: Long): String {
+            fun getSessionData(sessionId: Long): String {
                 return JSONObject().apply {
                     put("fps", JSONArray().apply {
                         fpsWatchStore.sessionFpsData(sessionId).forEach {
@@ -215,7 +215,7 @@ class ActivityFpsChart : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun setStatusBarColor(colorStr: String): Boolean {
+            fun setStatusBarColor(colorStr: String): Boolean {
                 try {
                     val color = Color.parseColor(colorStr)
                     vtools_online.post {
@@ -235,7 +235,7 @@ class ActivityFpsChart : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun setNavigationBarColor(colorStr: String): Boolean {
+            fun setNavigationBarColor(colorStr: String): Boolean {
                 try {
                     val color = Color.parseColor(colorStr)
                     vtools_online.post {
@@ -256,7 +256,7 @@ class ActivityFpsChart : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun showToast(str: String) {
+            fun showToast(str: String) {
                 try {
                     vtools_online.post {
                         Toast.makeText(context, str, Toast.LENGTH_LONG).show()

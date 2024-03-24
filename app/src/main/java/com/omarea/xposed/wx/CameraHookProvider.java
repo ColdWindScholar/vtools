@@ -16,7 +16,7 @@ public class CameraHookProvider {
     }};
 
     public VirtualCameraInfo[] cameraList;
-    private int defaultCameraIndex;
+    private final int defaultCameraIndex;
 
     // 打印所有后置摄像头的Id
     private void dumpCameraList() {

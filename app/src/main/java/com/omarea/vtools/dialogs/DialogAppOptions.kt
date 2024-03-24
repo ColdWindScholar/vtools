@@ -25,7 +25,7 @@ import java.util.*
  * Created by helloklf on 2017/12/04.
  */
 
-open class DialogAppOptions(protected final var context: Activity, protected var apps: ArrayList<AppInfo>, protected var handler: Handler) {
+open class DialogAppOptions(protected var context: Activity, protected var apps: ArrayList<AppInfo>, protected var handler: Handler) {
     private var allowPigz = false
     private var backupPath = CommonCmds.AbsBackUpDir
     private var userdataPath = ""
@@ -98,7 +98,7 @@ open class DialogAppOptions(protected final var context: Activity, protected var
         }
         dialogView.findViewById<View>(R.id.app_options_uninstall).visibility = View.GONE
 
-        dialogView.findViewById<TextView>(R.id.app_options_title).setText("请选择操作")
+        dialogView.findViewById<TextView>(R.id.app_options_title).text = "请选择操作"
 
         dialogView.findViewById<View>(R.id.app_options_app_freeze).setOnClickListener {
             dialog.dismiss()
@@ -163,15 +163,15 @@ open class DialogAppOptions(protected final var context: Activity, protected var
     protected fun execShell(sb: StringBuilder) {
         val layoutInflater = LayoutInflater.from(context)
         val dialog = layoutInflater.inflate(R.layout.dialog_loading, null)
-        val textView = (dialog.findViewById(R.id.dialog_text) as TextView)
+        val textView: TextView = (dialog.findViewById(R.id.dialog_text))
         textView.text = "正在获取权限"
         val alert = DialogHelper.customDialog(context, dialog, false)
         AsynSuShellUnit(ProgressHandler(dialog, alert, handler)).exec(sb.toString()).waitFor()
     }
 
     open class ProgressHandler(dialog: View, protected var alert: DialogHelper.DialogWrap, protected var handler: Handler) : Handler(Looper.getMainLooper()) {
-        private var textView: TextView = (dialog.findViewById(R.id.dialog_text) as TextView)
-        var progressBar: ProgressBar = (dialog.findViewById(R.id.dialog_app_details_progress) as ProgressBar)
+        private var textView: TextView = (dialog.findViewById(R.id.dialog_text))
+        var progressBar: ProgressBar = (dialog.findViewById(R.id.dialog_app_details_progress))
         private var error = java.lang.StringBuilder()
 
         override fun handleMessage(msg: Message) {
@@ -576,7 +576,7 @@ open class DialogAppOptions(protected final var context: Activity, protected var
 
     private fun _clearAll(userOnly: Boolean) {
         val um = context.getSystemService(Context.USER_SERVICE) as UserManager?
-        val userHandle = android.os.Process.myUserHandle()
+        val userHandle = Process.myUserHandle()
         var uid = 0L
         if (um != null) {
             uid = um.getSerialNumberForUser(userHandle)
@@ -658,7 +658,7 @@ open class DialogAppOptions(protected final var context: Activity, protected var
     private fun _uninstallAll(userOnly: Boolean, keepData: Boolean) {
         if (userOnly) {
             val um = context.getSystemService(Context.USER_SERVICE) as UserManager?
-            val userHandle = android.os.Process.myUserHandle()
+            val userHandle = Process.myUserHandle()
             if (um != null) {
                 val uid = um.getSerialNumberForUser(userHandle)
                 _uninstallAllOnlyUser(uid, keepData)

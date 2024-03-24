@@ -61,30 +61,30 @@ class ActivityFreezeApps : ActivityBase() {
 
     private fun rsBlur(source: Bitmap, radius: Int): Bitmap {
         val inputBmp = source
-        val renderScript = RenderScript.create(this);
+        val renderScript = RenderScript.create(this)
 
         // Allocate memory for Renderscript to work with
         //(2)
-        val input = Allocation.createFromBitmap(renderScript, inputBmp);
-        val output = Allocation.createTyped(renderScript, input.getType());
+        val input = Allocation.createFromBitmap(renderScript, inputBmp)
+        val output = Allocation.createTyped(renderScript, input.type)
         //(3)
         // Load up an instance of the specific script that we want to use.
-        val scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
+        val scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
         //(4)
-        scriptIntrinsicBlur.setInput(input);
+        scriptIntrinsicBlur.setInput(input)
         //(5)
         // Set the blur radius
-        scriptIntrinsicBlur.setRadius(radius.toFloat());
+        scriptIntrinsicBlur.setRadius(radius.toFloat())
         //(6)
         // Start the ScriptIntrinisicBlur
-        scriptIntrinsicBlur.forEach(output);
+        scriptIntrinsicBlur.forEach(output)
         //(7)
         // Copy the output to the blurred bitmap
-        output.copyTo(inputBmp);
+        output.copyTo(inputBmp)
         //(8)
-        renderScript.destroy();
+        renderScript.destroy()
 
-        return inputBmp;
+        return inputBmp
     }
 
     private fun onViewCreated() {
@@ -230,7 +230,7 @@ class ActivityFreezeApps : ActivityBase() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                (freeze_apps.adapter as Filterable).getFilter().filter(if (s == null) "" else s.toString())
+                (freeze_apps.adapter as Filterable).filter.filter(if (s == null) "" else s.toString())
             }
         })
 
@@ -377,7 +377,7 @@ class ActivityFreezeApps : ActivityBase() {
     // TODO:替换公共方法
     fun getUserId(context: Context): Int {
         val um = context.getSystemService(Context.USER_SERVICE) as UserManager
-        val userHandle = android.os.Process.myUserHandle()
+        val userHandle = Process.myUserHandle()
 
         var value = 0
         try {
@@ -462,7 +462,7 @@ class ActivityFreezeApps : ActivityBase() {
             // i.setFlags(0x10200000);
             // Log.d("getAppSwitchIntent", "" + i.getFlags());
             intent?.run {
-                setFlags(getFlags() and Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED.inv() or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                setFlags(flags and Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED.inv() or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY)
                 // setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -583,7 +583,7 @@ class ActivityFreezeApps : ActivityBase() {
             onCompleted.run()
         }
 
-        private fun getAppIcon(packageName: String): Drawable? {
+        private fun getAppIcon(packageName: String): Drawable {
             return packageManager.getApplicationIcon(packageName)
         }
     }
@@ -672,7 +672,7 @@ class ActivityFreezeApps : ActivityBase() {
             val shortcutHelper = FreezeAppShortcutHelper()
             for (it in freezeApps) {
                 if (it.equals("com.android.vending")) {
-                    GAppsUtilis().enable(KeepShellPublic.secondaryKeepShell);
+                    GAppsUtilis().enable(KeepShellPublic.secondaryKeepShell)
                 } else {
                     KeepShellPublic.doCmdSync("pm unsuspend ${it}\n pm unhide ${it}\n" + "pm enable ${it}")
                 }

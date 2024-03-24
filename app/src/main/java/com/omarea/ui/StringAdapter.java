@@ -14,8 +14,8 @@ import com.omarea.vtools.R;
  */
 
 public class StringAdapter extends BaseAdapter {
-    private String[] arr;
-    private Context context;
+    private final String[] arr;
+    private final Context context;
 
     public StringAdapter(Context context, String[] arr) {
         this.arr = arr;

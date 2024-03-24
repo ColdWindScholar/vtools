@@ -45,12 +45,12 @@ open class AutoClickBase {
             return service.dispatchGesture(buildGesture(rect), object : AccessibilityService.GestureResultCallback() {
                 @Override
                 override fun onCompleted(gestureDescription: GestureDescription) {
-                    super.onCompleted(gestureDescription);
+                    super.onCompleted(gestureDescription)
                     // Log.d("@Scene", "onCompleted: 完成..........");
                 }
 
                 override fun onCancelled(gestureDescription: GestureDescription) {
-                    super.onCancelled(gestureDescription);
+                    super.onCancelled(gestureDescription)
                     // Log.d("@Scene", "onCancelled: 取消..........");
                 }
             }, null)

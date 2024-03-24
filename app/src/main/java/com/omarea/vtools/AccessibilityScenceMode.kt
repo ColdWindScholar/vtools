@@ -35,7 +35,7 @@ import kotlin.collections.ArrayList
 /**
  * Created by helloklf on 2016/8/27.
  */
-public class AccessibilityScenceMode : AccessibilityService(), IEventReceiver {
+class AccessibilityScenceMode : AccessibilityService(), IEventReceiver {
     override val isAsync: Boolean
         get() = false
 
@@ -309,7 +309,7 @@ public class AccessibilityScenceMode : AccessibilityService(), IEventReceiver {
             AccessibilityWindowInfo.TYPE_SPLIT_SCREEN_DIVIDER
     )
 
-    public fun getEffectiveWindows(includeSystemApp: Boolean = false): List<AccessibilityWindowInfo> {
+    fun getEffectiveWindows(includeSystemApp: Boolean = false): List<AccessibilityWindowInfo> {
         val windowsList = windows
         if (windowsList != null && windowsList.size > 1) {
             val effectiveWindows = windowsList.filter {
@@ -327,7 +327,7 @@ public class AccessibilityScenceMode : AccessibilityService(), IEventReceiver {
         return ArrayList()
     }
 
-    public fun getForegroundApps(): Array<String> {
+    fun getForegroundApps(): Array<String> {
         val windows = this.getEffectiveWindows(true)
         return windows.map {
             it.root?.packageName

@@ -21,7 +21,7 @@ class FileValueMap {
             val rows = content.split("----")
             for (row in rows) {
                 val item = row.trim()
-                if (!item.isEmpty() && item.indexOf(":") > -1) {
+                if (item.isNotEmpty() && item.indexOf(":") > -1) {
                     val end = item.indexOf(":")
                     val name = item.substring(0, end)
                     if (end < item.length - 1) {

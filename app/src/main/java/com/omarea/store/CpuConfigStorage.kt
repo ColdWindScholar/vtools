@@ -18,18 +18,18 @@ class CpuConfigStorage(private val context: Context) : ObjectStorage<CpuStatus>(
     }
 
     fun load(configFile: String? = null): CpuStatus? {
-        return super.load(if (configFile == null) defaultFile else configFile)
+        return super.load(configFile ?: defaultFile)
     }
 
     fun saveCpuConfig(status: CpuStatus?, configFile: String? = null): Boolean {
-        val name = if (configFile == null) defaultFile else configFile
+        val name = configFile ?: defaultFile
         removeCache(name)
         return super.save(status, name)
     }
 
     // 应用CPU配置参数
     fun applyCpuConfig(context: Context, configFile: String? = null) {
-        val name = if (configFile == null) defaultFile else configFile
+        val name = configFile ?: defaultFile
 
         val cacheName = getCacheName(name)
         if (File(cacheName).exists()) {

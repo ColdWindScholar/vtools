@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class AppShortcutManager {
-    private Context context;
+    private final Context context;
 
     public AppShortcutManager(Context context) {
         this.context = context;

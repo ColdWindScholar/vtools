@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock
 /**
  * Created by Hello on 2018/01/23.
  */
-public class KeepShellAsync(private var context: Context?, private var rootMode: Boolean = true) : ShellEvents() {
+class KeepShellAsync(private var context: Context?, private var rootMode: Boolean = true) : ShellEvents() {
     companion object {
         private val keepShells = HashMap<String, KeepShellAsync>()
         fun getInstance(key: String): KeepShellAsync {
@@ -70,7 +70,7 @@ public class KeepShellAsync(private var context: Context?, private var rootMode:
     }
 
     //尝试退出命令行程序
-    public fun tryExit() {
+    fun tryExit() {
         try {
             if (out != null)
                 out!!.close()
@@ -181,7 +181,7 @@ public class KeepShellAsync(private var context: Context?, private var rootMode:
     }
 
     //执行脚本
-    public fun doCmd(cmd: String, isRedo: Boolean = false) {
+    fun doCmd(cmd: String, isRedo: Boolean = false) {
         try {
             //tryExit()
             if (p == null || isRedo || out == null) {

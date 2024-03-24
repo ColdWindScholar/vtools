@@ -182,7 +182,7 @@ class CpuChartView : View {
             cyclePaint?.alpha = 127 + ((ratio / 100.0f) * 255).toInt()
         }
 
-        cyclePaint!!.setStrokeCap(Paint.Cap.ROUND)
+        cyclePaint!!.strokeCap = Paint.Cap.ROUND
         if (ratio < 1 && (ratioState <= 2)) {
             return
         } else if (ratioState >= 98) {

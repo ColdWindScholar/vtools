@@ -95,8 +95,8 @@ class FloatTaskManager(private val context: Context) {
                 if (event != null) {
                     when (event.action) {
                         MotionEvent.ACTION_DOWN -> {
-                            touchStartX = event.getX()
-                            touchStartY = event.getY()
+                            touchStartX = event.x
+                            touchStartY = event.y
                             touchStartRawX = event.rawX
                             touchStartRawY = event.rawY
                             isTouchDown = true

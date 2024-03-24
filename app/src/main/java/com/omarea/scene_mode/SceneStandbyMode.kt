@@ -9,12 +9,12 @@ import com.omarea.vtools.R
 
 class SceneStandbyMode(private val context: Context, private val keepShell: KeepShell) {
     companion object {
-        public val configSpfName = "SceneStandbyList"
+        val configSpfName = "SceneStandbyList"
     }
 
     private val stateProp = "persist.vtools.suspend"
 
-    public fun getCmds(on: Boolean): String {
+    fun getCmds(on: Boolean): String {
         val cmds = StringBuffer()
         if (on) {
             val apps = AppListHelper(context).getAll()
@@ -65,14 +65,14 @@ class SceneStandbyMode(private val context: Context, private val keepShell: Keep
         return cmds.toString()
     }
 
-    public fun on() {
+    fun on() {
         if (keepShell.doCmdSync("getprop $stateProp").equals("1")) {
             return
         }
         keepShell.doCmdSync(getCmds(true))
     }
 
-    public fun off() {
+    fun off() {
         if (keepShell.doCmdSync("getprop $stateProp").equals("0")) {
             return
         }

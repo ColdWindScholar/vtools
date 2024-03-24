@@ -22,7 +22,7 @@ class DialogItemChooserMini(
         private val multiple: Boolean = false) {
 
     companion object {
-        public fun singleChooser(context: Context, items: Array<String>, checkedItem: Int): DialogItemChooserMini {
+        fun singleChooser(context: Context, items: Array<String>, checkedItem: Int): DialogItemChooserMini {
             val options = ArrayList(items.map {
                 SelectItem().apply {
                     title = it
@@ -45,7 +45,7 @@ class DialogItemChooserMini(
     private var view: View? = null
     private var dialog:DialogHelper.DialogWrap? = null
 
-    public fun show(): DialogHelper.DialogWrap {
+    fun show(): DialogHelper.DialogWrap {
         if (dialog?.isShowing != true) {
             onViewCreated(createView())
             this.dialog = DialogHelper.customDialog(context, this.view!!)
@@ -92,7 +92,7 @@ class DialogItemChooserMini(
                     }
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                        (absListView.adapter as Filterable).getFilter().filter(if (s == null) "" else s.toString())
+                        (absListView.adapter as Filterable).filter.filter(if (s == null) "" else s.toString())
                     }
                 })
             }
@@ -136,29 +136,29 @@ class DialogItemChooserMini(
         }
     }
 
-    public fun setTitle(resId: Int): DialogItemChooserMini {
+    fun setTitle(resId: Int): DialogItemChooserMini {
         return setTitle(context.getString(resId))
     }
 
-    public fun setTitle(title: String): DialogItemChooserMini {
+    fun setTitle(title: String): DialogItemChooserMini {
         this.title = title
         updateTitle()
 
         return this
     }
 
-    public fun setMessage(message: String): DialogItemChooserMini {
+    fun setMessage(message: String): DialogItemChooserMini {
         this.message = message
         updateMessage()
 
         return this
     }
 
-    public fun setMessage(resId: Int): DialogItemChooserMini {
+    fun setMessage(resId: Int): DialogItemChooserMini {
         return setMessage(context.getString(resId))
     }
 
-    public fun setCallback(callback: Callback?): DialogItemChooserMini {
+    fun setCallback(callback: Callback?): DialogItemChooserMini {
         this.callback = callback
 
         return this

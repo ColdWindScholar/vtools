@@ -43,7 +43,7 @@ public class XposedInterface implements IXposedHookLoadPackage, IXposedHookZygot
 
             Iterator<String> iter = config.keys();
             while (iter.hasNext()) {
-                String key = (String) iter.next();
+                String key = iter.next();
                 switch (key) {
                     case "dpi": {
                         appConfig.setDpi(config.getInt(key));

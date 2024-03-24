@@ -63,19 +63,19 @@ class FloatMonitorThreads(private val mContext: Context) {
 
     private val wm = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
-    private var lastApp = "";
-    private var lastPid = -1;
+    private var lastApp = ""
+    private var lastPid = -1
 
     private val pid:Int
         get() {
             val app = GlobalStatus.lastPackageName
             if (app!=lastApp || lastPid < 1) {
                 if (app.isNotEmpty()) {
-                    lastApp = app;
+                    lastApp = app
                     lastPid = processUtils.getAppMainProcess(app)
                 }
             }
-            return lastPid;
+            return lastPid
         }
 
     // 更新数据
@@ -126,7 +126,7 @@ class FloatMonitorThreads(private val mContext: Context) {
             mView = null
         }
     }
-    public fun showPopupWindow() {
+    fun showPopupWindow() {
         if (!show) {
             wm.addView(view, params)
             mView = view

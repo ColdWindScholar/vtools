@@ -9,32 +9,32 @@ import android.widget.Toast
 import com.omarea.vaddin.IAppConfigAidlInterface
 import org.json.JSONObject
 
-public class XposedExtension(private val context: Context) {
+class XposedExtension(private val context: Context) {
 
     open class AppConfig(val packageName: String) {
-        public var dpi = -1
-        public var excludeRecent = false
-        public var smoothScroll = false
-        public var webDebug = false
+        var dpi = -1
+        var excludeRecent = false
+        var smoothScroll = false
+        var webDebug = false
     }
 
     open class GlobalConfig {
-        public var hideSuIcon = false
-        public var fgNotificationDisable = false
-        public var reverseOptimizer = false
-        public var androidScroll = false
+        var hideSuIcon = false
+        var fgNotificationDisable = false
+        var reverseOptimizer = false
+        var androidScroll = false
     }
 
     private var aidlConn: IAppConfigAidlInterface? = null
 
-    public val current: IAppConfigAidlInterface?
+    val current: IAppConfigAidlInterface?
         get() {
             return aidlConn
         }
 
     private lateinit var conn:ServiceConnection
 
-    public fun bindService(onCompleted: Runnable):Boolean {
+    fun bindService(onCompleted: Runnable):Boolean {
         try {
             if (context.packageManager?.getPackageInfo("com.omarea.vaddin", 0) == null) {
                 return false
@@ -78,7 +78,7 @@ public class XposedExtension(private val context: Context) {
         return false
     }
 
-    public fun unbindService() {
+    fun unbindService() {
         try {
             if (aidlConn != null) {
                 context.unbindService(conn)
@@ -90,11 +90,11 @@ public class XposedExtension(private val context: Context) {
 
 
     // 获取某个应用的xposed配置
-    public fun getAppConfig(packageName: String): AppConfig? {
+    fun getAppConfig(packageName: String): AppConfig? {
         return getAppConfig(AppConfig(packageName))
     }
 
-    public fun getAppConfig(appConfig: AppConfig): AppConfig? {
+    fun getAppConfig(appConfig: AppConfig): AppConfig? {
         try {
             val configJson = current!!.getStringValue(appConfig.packageName, "{}")
             val config = JSONObject(configJson)
@@ -121,7 +121,7 @@ public class XposedExtension(private val context: Context) {
         return null
     }
 
-    public fun setAppConfig(appConfig: AppConfig): Boolean {
+    fun setAppConfig(appConfig: AppConfig): Boolean {
         if (current != null) {
             try {
                 val config = JSONObject().apply {
@@ -140,7 +140,7 @@ public class XposedExtension(private val context: Context) {
         return false
     }
 
-    public fun getGlobalConfig(): GlobalConfig? {
+    fun getGlobalConfig(): GlobalConfig? {
         if (current != null) {
             try {
                 current?.run {
@@ -158,7 +158,7 @@ public class XposedExtension(private val context: Context) {
         return null
     }
 
-    public fun setGlobalConfig(globalConfig: GlobalConfig): Boolean {
+    fun setGlobalConfig(globalConfig: GlobalConfig): Boolean {
         if (current != null) {
             try {
                 current?.run {

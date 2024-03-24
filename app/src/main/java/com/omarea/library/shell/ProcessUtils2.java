@@ -57,18 +57,6 @@ public class ProcessUtils2 {
         return !PS_COMMAND.isEmpty();
     }
 
-    private long str2Long(String str) {
-        if (str.contains("K")) {
-            return (long)Double.parseDouble(str.substring(0, str.indexOf("K")));
-        } else if (str.contains("M")) {
-            return (long)(Double.parseDouble(str.substring(0, str.indexOf("M"))) * 1024);
-        } else if (str.contains("G")) {
-            return (long)(Double.parseDouble(str.substring(0, str.indexOf("G"))) * 1048576);
-        } else {
-            return Long.parseLong(str) / 1024;
-        }
-    }
-
     // 从进程列表排除的应用
     private final ArrayList<String> excludeProcess = new ArrayList<String>() {
         {
@@ -99,8 +87,6 @@ public class ProcessUtils2 {
             } catch (Exception ex) {
                 // Log.e("Scene-ProcessUtils", "" + ex.getMessage() + " -> " + row);
             }
-        } else {
-            // Log.e("Scene-ProcessUtils", "" + row);
         }
         return null;
     }
@@ -185,8 +171,6 @@ public class ProcessUtils2 {
                 } catch (Exception ex) {
                     // Log.e("Scene-ProcessUtils", "" + ex.getMessage() + " -> " + row);
                 }
-            } else {
-                // Log.e("Scene-ProcessUtils", "" + ex.getMessage() + " -> " + row);
             }
         }
         Collections.sort(threadData, new Comparator<ThreadInfo>() {

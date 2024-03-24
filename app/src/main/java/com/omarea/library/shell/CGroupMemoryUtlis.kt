@@ -9,17 +9,13 @@ import com.omarea.common.shell.RootFile
 import com.omarea.vtools.R
 import java.nio.charset.Charset
 
-public class CGroupMemoryUtlis(private val context: Context) {
+class CGroupMemoryUtlis(private val context: Context) {
     companion object {
         private var supported: Boolean? = null
         private var memcgShell: String? = null
-        public val inited: Boolean
-            get () {
-                return memcgShell != null
-            }
     }
 
-    public val isSupported: Boolean
+    val isSupported: Boolean
         get() {
             if (supported == null) {
                 supported = RootFile.fileExists("/dev/memcg/tasks") || RootFile.fileExists("/sys/fs/cgroup/memory/tasks")
@@ -27,7 +23,7 @@ public class CGroupMemoryUtlis(private val context: Context) {
             return supported == true
         }
 
-    public fun init() {
+    fun init() {
         // memcgShell 为null为未初始化或初始化失败状态，需要先执行初始化
         if (memcgShell == null && isSupported) {
             val initShell = RawText.getRawText(context, R.raw.memcg_set_init).toByteArray(Charset.defaultCharset())
@@ -46,7 +42,7 @@ public class CGroupMemoryUtlis(private val context: Context) {
         }
     }
 
-    public fun setGroup(packageName: String, group: String) {
+    fun setGroup(packageName: String, group: String) {
         if (!isSupported) {
             return
         }

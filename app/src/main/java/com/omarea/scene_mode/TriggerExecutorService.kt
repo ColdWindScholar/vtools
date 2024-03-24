@@ -15,7 +15,7 @@ class TriggerExecutorService : IntentService("TriggerExecutorService") {
     }
 
     private fun executeTriggers(triggers: ArrayList<String>) {
-        val context = this;
+        val context = this
         val storage = TriggerStorage(this)
         triggers.forEach {
             storage.load(it)?.run {

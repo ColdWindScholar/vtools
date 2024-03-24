@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 
 public class KrScriptConfig {
-    private static final String ASSETS_FILE = "file:///android_asset/";
+
 
     private final static String TOOLKIT_DIR = "toolkit_dir";
     private final static String TOOLKIT_DIR_DEFAULT = "file:///android_asset/kr-script/toolkit";
@@ -109,18 +109,4 @@ public class KrScriptConfig {
         return null;
     }
 
-    public boolean getAllowHomePage() {
-        if (configInfo != null && configInfo.containsKey(ALLOW_HOME_PAGE)) {
-            String value = configInfo.get(ALLOW_HOME_PAGE);
-            return value != null && value.equals("1");
-        }
-        return ALLOW_HOME_PAGE_DEFAULT.equals("1");
-    }
-
-    public String getBeforeStartSh() {
-        if (configInfo != null && configInfo.containsKey(BEFORE_START_SH)) {
-            return configInfo.get(BEFORE_START_SH);
-        }
-        return BEFORE_START_SH_DEFAULT;
-    }
 }

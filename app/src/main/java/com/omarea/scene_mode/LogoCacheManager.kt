@@ -11,7 +11,7 @@ import android.os.Build
 import com.omarea.common.shared.BitmapUtil
 import com.omarea.common.shared.FileWrite
 
-public class LogoCacheManager(private var context: Context) {
+class LogoCacheManager(private var context: Context) {
     private fun drawableToBitmap(drawable: Drawable): Bitmap? {
         if (drawable is BitmapDrawable) {
             return drawable.bitmap
@@ -40,11 +40,11 @@ public class LogoCacheManager(private var context: Context) {
         return FileWrite.getPrivateFilePath(context, "logo_cache/" + packageName + ".png")
     }
 
-    public fun saveIcon(drawable: Drawable, packageName: String) {
+    fun saveIcon(drawable: Drawable, packageName: String) {
         BitmapUtil().saveBitmapToSDCard(drawableToBitmap(drawable), getCacheOutput(packageName))
     }
 
-    public fun loadIcon(packageName: String): Drawable? {
+    fun loadIcon(packageName: String): Drawable? {
         val bitmap = BitmapUtil().getBitmapFromSDCard(getCacheOutput(packageName))
         if (bitmap == null) {
             return null

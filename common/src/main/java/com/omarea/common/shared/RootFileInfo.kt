@@ -16,7 +16,7 @@ class RootFileInfo {
     var parentDir: String = ""
     var filePath: String = ""
     var isDirectory: Boolean = false
-    var fileSize: Long = 0;
+    var fileSize: Long = 0
 
     val fileName: String
         get() {
@@ -30,23 +30,23 @@ class RootFileInfo {
         get() = parentDir + "/" + fileName
 
 
-    public fun exists(): Boolean {
+    fun exists(): Boolean {
         return RootFile.itemExists(this.absolutePath)
     }
 
-    public fun isFile(): Boolean {
+    fun isFile(): Boolean {
         return !isDirectory
     }
 
-    public fun getParent(): String {
+    fun getParent(): String {
         return this.parentDir
     }
 
-    public fun getName(): String {
+    fun getName(): String {
         return this.fileName
     }
 
-    public fun listFiles(): ArrayList<RootFileInfo> {
+    fun listFiles(): ArrayList<RootFileInfo> {
         if (this.isDirectory) {
             return RootFile.list(this.absolutePath)
         }

@@ -17,6 +17,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -30,10 +31,6 @@ public class ScriptEnvironmen {
     private static String TOOKIT_DIR = "";
     private static boolean rooted = false;
     private static KeepShell privateShell;
-
-    public static boolean isInited() {
-        return inited;
-    }
 
     private static boolean init(Context context) {
         SharedPreferences configSpf = context.getSharedPreferences("kr-script-config", Context.MODE_PRIVATE);
@@ -397,9 +394,9 @@ public class ScriptEnvironmen {
             }
         }
         try {
-            dataOutputStream.write(envpCmds.toString().getBytes("UTF-8"));
+            dataOutputStream.write(envpCmds.toString().getBytes(StandardCharsets.UTF_8));
 
-            dataOutputStream.write(getExecuteScript(context, cmds, tag).getBytes("UTF-8"));
+            dataOutputStream.write(getExecuteScript(context, cmds, tag).getBytes(StandardCharsets.UTF_8));
 
             dataOutputStream.writeBytes("\n\n");
             dataOutputStream.writeBytes("sleep 0.2;\n");

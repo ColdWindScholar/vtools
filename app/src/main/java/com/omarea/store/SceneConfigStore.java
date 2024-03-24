@@ -151,16 +151,6 @@ public class SceneConfigStore extends SQLiteOpenHelper {
         }
     }
 
-    public boolean removeAppConfig(String packageName) {
-        try {
-            SQLiteDatabase database = getWritableDatabase();
-            database.execSQL("delete from scene_config3 where id = ?", new String[]{packageName});
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
-    }
-
     public ArrayList<String> getFreezeAppList() {
         ArrayList<String> list = new ArrayList<String>();
         try {

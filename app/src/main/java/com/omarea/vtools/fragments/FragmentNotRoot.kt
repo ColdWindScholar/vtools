@@ -25,10 +25,5 @@ class FragmentNotRoot : androidx.fragment.app.Fragment() {
         }
     }
 
-    companion object {
-        fun createPage(): androidx.fragment.app.Fragment {
-            val fragment = FragmentNotRoot()
-            return fragment
-        }
-    }
+    companion object
 }

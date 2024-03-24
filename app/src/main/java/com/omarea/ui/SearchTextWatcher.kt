@@ -11,7 +11,7 @@ import android.text.TextWatcher
  */
 
 
-public class SearchTextWatcher(private var onChange: Runnable) : TextWatcher {
+class SearchTextWatcher(private var onChange: Runnable) : TextWatcher {
     private val myHandler = Handler(Looper.getMainLooper())
     var lastInput = 0L
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {

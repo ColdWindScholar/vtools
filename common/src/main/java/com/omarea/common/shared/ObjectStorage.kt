@@ -10,11 +10,11 @@ open class ObjectStorage<T : Serializable>(private val context: Context) {
         return FileWrite.getPrivateFilePath(context, objectStorageDir + configFile)
     }
 
-    public open fun load(configFile: String): T? {
+    open fun load(configFile: String): T? {
         val file = File(getSaveDir(configFile))
         if (file.exists()) {
-            var fileInputStream: FileInputStream? = null;
-            var objectInputStream: ObjectInputStream? = null;
+            var fileInputStream: FileInputStream? = null
+            var objectInputStream: ObjectInputStream? = null
             try {
                 fileInputStream = FileInputStream(file)
                 objectInputStream = ObjectInputStream(fileInputStream)
@@ -35,7 +35,7 @@ open class ObjectStorage<T : Serializable>(private val context: Context) {
         return null
     }
 
-    public open fun save(obj: T?, configFile: String): Boolean {
+    open fun save(obj: T?, configFile: String): Boolean {
         val file = File(getSaveDir(configFile))
         val parentFile = file.parentFile
         if (!parentFile.exists()) {
@@ -71,14 +71,14 @@ open class ObjectStorage<T : Serializable>(private val context: Context) {
         return true
     }
 
-    public open fun remove(configFile: String) {
+    open fun remove(configFile: String) {
         val file = File(getSaveDir(configFile))
         if (file.exists()) {
             file.delete()
         }
     }
 
-    public open fun exists(configFile: String): Boolean {
+    open fun exists(configFile: String): Boolean {
         return File(getSaveDir(configFile)).exists()
     }
 }

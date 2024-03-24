@@ -28,7 +28,7 @@ import com.omarea.store.FpsWatchStore
 import com.omarea.vtools.R
 import java.util.*
 
-public class FloatFpsWatch(private val mContext: Context) {
+class FloatFpsWatch(private val mContext: Context) {
     private var startMonitorTime = 0L
     private val fpsWatchStore = FpsWatchStore(mContext)
     private var sessionId = 0L
@@ -91,12 +91,12 @@ public class FloatFpsWatch(private val mContext: Context) {
         params.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL or LayoutParams.FLAG_NOT_FOCUSABLE or LayoutParams.FLAG_FULLSCREEN
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            params.layoutInDisplayCutoutMode = LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
 
         val navHeight = 0
         if (navHeight > 0) {
-            val display = mWindowManager!!.getDefaultDisplay()
+            val display = mWindowManager!!.defaultDisplay
             val p = Point()
             display.getRealSize(p)
             params.y = -navHeight
@@ -230,7 +230,7 @@ public class FloatFpsWatch(private val mContext: Context) {
 
     companion object {
         private var mWindowManager: WindowManager? = null
-        public var show: Boolean? = false
+        var show: Boolean? = false
 
         @SuppressLint("StaticFieldLeak")
         private var mView: View? = null

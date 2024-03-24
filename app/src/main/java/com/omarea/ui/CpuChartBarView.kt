@@ -18,7 +18,7 @@ class CpuChartBarView : View {
         add(0)
         add(0)
         add(0)
-    };
+    }
     private var strokeWidth = 0f
     private var accentColor = 0x22888888
 

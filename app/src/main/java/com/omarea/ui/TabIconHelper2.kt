@@ -23,7 +23,7 @@ class TabIconHelper2(
     private val fragments = ArrayList<Fragment>()
     private var views = ArrayList<View>()
     private var tabsInited = false
-    public val adapter = object : FragmentPagerAdapter(supportFragmentManager) {
+    val adapter = object : FragmentPagerAdapter(supportFragmentManager) {
         override fun getCount(): Int {
             return fragments.size
         }
@@ -47,7 +47,7 @@ class TabIconHelper2(
         val textView = layout.findViewById<TextView>(R.id.ItemTitle)
         val tabId = "tab_" + views.size
 
-        textView.setText(text)
+        textView.text = text
 
         // val tintIcon = DrawableCompat.wrap(view.drawable)
         // val csl = getResources().getColorStateList(R.color.colorAccent)

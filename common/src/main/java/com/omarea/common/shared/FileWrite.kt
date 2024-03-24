@@ -69,7 +69,7 @@ object FileWrite {
         return getPrivateFileDir(context) + (if (outName.startsWith("/")) outName.substring(1, outName.length) else outName)
     }
     fun writePrivateFile(file: String, outName: String, context: Context): String? {
-        return writePrivateFile(context.assets, file, outName, context);
+        return writePrivateFile(context.assets, file, outName, context)
     }
 
     fun writePrivateFile(assetManager: AssetManager, file: String, outName: String, context: Context): String? {

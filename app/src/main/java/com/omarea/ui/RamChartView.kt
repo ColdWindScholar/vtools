@@ -167,7 +167,7 @@ class RamChartView : View {
         } else {
             cyclePaint?.alpha = 127 + ((ratio / 100.0f) * 255).toInt()
         }
-        cyclePaint!!.setStrokeCap(Paint.Cap.ROUND)
+        cyclePaint!!.strokeCap = Paint.Cap.ROUND
         canvas.drawArc(RectF(0f, 0f, mRadius, mRadius), -90f, (ratioState * 3.6f) + 1f, false, cyclePaint!!)
         if (ratioState < ratio) {
             ratioState += 1

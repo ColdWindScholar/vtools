@@ -65,9 +65,9 @@ class DialogElectricityUnit {
             } else if (unit > -1000 * 1000 * 100) {
                 unit *= 10
             }
-            electricity_adj_unit.setText(unit.toString())
+            electricity_adj_unit.text = unit.toString()
             val currentMA = currentNow / unit
-            electricity_adj_sample.setText((if (currentMA >= 0) "+" else "") + currentMA + "mA")
+            electricity_adj_sample.text = (if (currentMA >= 0) "+" else "") + currentMA + "mA"
         }
         dialog.findViewById<ImageButton>(R.id.electricity_adj_plus).setOnClickListener {
             if (unit == -1) {
@@ -77,15 +77,15 @@ class DialogElectricityUnit {
             } else if (unit < 1000 * 1000 * 100) {
                 unit *= 10
             }
-            electricity_adj_unit.setText(unit.toString())
+            electricity_adj_unit.text = unit.toString()
             val currentMA = currentNow / unit
-            electricity_adj_sample.setText((if (currentMA >= 0) "+" else "") + currentMA + "mA")
+            electricity_adj_sample.text = (if (currentMA >= 0) "+" else "") + currentMA + "mA"
         }
         dialog.findViewById<Button>(R.id.btn_confirm).setOnClickListener {
             globalSPF.edit().putInt(SpfConfig.GLOBAL_SPF_CURRENT_NOW_UNIT, unit).apply()
             alertDialog?.dismiss()
         }
-        electricity_adj_unit.setText(unit.toString())
+        electricity_adj_unit.text = unit.toString()
         val handler = Handler(Looper.getMainLooper())
         val timer = Timer().apply {
             schedule(object : TimerTask() {
@@ -94,7 +94,7 @@ class DialogElectricityUnit {
                         batteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW)
                         try {
                             val currentMA = currentNow / unit
-                            electricity_adj_sample.setText((if (currentMA >= 0) "+" else "") + currentMA + "mA")
+                            electricity_adj_sample.text = (if (currentMA >= 0) "+" else "") + currentMA + "mA"
                         } catch (ex: Exception) {
                         }
                     }

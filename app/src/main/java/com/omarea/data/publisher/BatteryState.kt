@@ -36,7 +36,7 @@ class BatteryState(private val applicationContext: Context) : BroadcastReceiver(
                 if (batteryManager == null) {
                     batteryManager = context.applicationContext.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
                 }
-                capacity = batteryManager!!.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+                capacity = batteryManager!!.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
             }
 
             GlobalStatus.batteryStatus = status

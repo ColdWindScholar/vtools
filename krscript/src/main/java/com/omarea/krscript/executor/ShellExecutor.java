@@ -17,7 +17,7 @@ import java.util.HashMap;
  */
 public class ShellExecutor {
     private boolean started = false;
-    private String sessionTag = "pio_" + System.currentTimeMillis();
+    private final String sessionTag = "pio_" + System.currentTimeMillis();
     private void killProcess(Context context) {
         ScriptEnvironmen.executeResultRoot(
                 context,
@@ -73,13 +73,13 @@ public class ShellExecutor {
                         try {
                             process.destroyForcibly();
                         } catch (Exception ex) {
-                            Log.e("KrScriptError", "" + ex.getMessage());
+                            Log.e("KrScriptError", ex.getMessage());
                         }
                     } else {
                         try {
                             process.destroy();
                         } catch (Exception ex) {
-                            Log.e("KrScriptError", "" + ex.getMessage());
+                            Log.e("KrScriptError", ex.getMessage());
                         }
                     }
                 }

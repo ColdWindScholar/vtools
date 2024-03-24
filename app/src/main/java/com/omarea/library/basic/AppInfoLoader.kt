@@ -69,8 +69,7 @@ open class AppInfoLoader(private val context: Context, private val cacheSize: In
         }
     }
 
-    class AppBasicInfo(var appName: String, var icon: Drawable?) {
-    }
+    class AppBasicInfo(var appName: String, var icon: Drawable?)
 
     fun loadAppBasicInfo(packageName: String): Deferred<AppBasicInfo> {
         return GlobalScope.async(Dispatchers.IO) {

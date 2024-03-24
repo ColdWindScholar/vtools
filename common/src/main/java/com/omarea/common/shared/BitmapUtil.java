@@ -83,7 +83,7 @@ public class BitmapUtil {
         }
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, ((OutputStream) fileOutputStream));//设置PNG的话，透明区域不会变成黑色
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);//设置PNG的话，透明区域不会变成黑色
 
             fileOutputStream.close();
             System.out.println("----------save success-------------------");
@@ -102,7 +102,7 @@ public class BitmapUtil {
             if (fileInputStream != null) {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inSampleSize = 2; //当图片资源太大的适合，会出现内存溢出。图片宽高都为原来的二分之一，即图片为原来的四分一
-                bitmap = BitmapFactory.decodeStream(((InputStream) fileInputStream), null, options);
+                bitmap = BitmapFactory.decodeStream(fileInputStream, null, options);
             }
         } catch (Exception e) {
             return null;

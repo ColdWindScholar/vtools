@@ -58,7 +58,7 @@ class BgTaskThread(private var process: Process) : Thread() {
                 }
             }
 
-            val expandView = RemoteViews(context.getPackageName(), R.layout.kr_task_notification)
+            val expandView = RemoteViews(context.packageName, R.layout.kr_task_notification)
             expandView.setTextViewText(R.id.kr_task_title, notificationTitle + "(" + notificationID + ")")
             expandView.setTextViewText(R.id.kr_task_log, notificationMessageRows.joinToString("", if (someIgnored) "……\n" else "").trim())
             expandView.setProgressBar(R.id.kr_task_progress, progressTotal, progressCurrent, progressTotal < 0)
@@ -107,7 +107,7 @@ class BgTaskThread(private var process: Process) : Thread() {
                 notification!!.flags = Notification.FLAG_NO_CLEAR or Notification.FLAG_ONGOING_EVENT
             }
 
-            notificationManager.notify(notificationID, notification); // 发送通知
+            notificationManager.notify(notificationID, notification) // 发送通知
         }
 
         override fun updateLog(msg: SpannableString?) {

@@ -91,7 +91,7 @@ object ThemeSwitch {
                 }
             }
             if (activity is AppCompatActivity) {
-                activity.getDelegate().setLocalNightMode(AppCompatDelegate.getDefaultNightMode())
+                activity.getDelegate().localNightMode = AppCompatDelegate.getDefaultNightMode()
             }
             activity.setTheme(themeId)
 
@@ -181,29 +181,29 @@ object ThemeSwitch {
 
     private fun rsBlur(source: Bitmap, radius: Int, context: Context): Bitmap {
         val inputBmp = source
-        val renderScript = RenderScript.create(context);
+        val renderScript = RenderScript.create(context)
 
         // Allocate memory for Renderscript to work with
         //(2)
-        val input = Allocation.createFromBitmap(renderScript, inputBmp);
-        val output = Allocation.createTyped(renderScript, input.getType());
+        val input = Allocation.createFromBitmap(renderScript, inputBmp)
+        val output = Allocation.createTyped(renderScript, input.type)
         //(3)
         // Load up an instance of the specific script that we want to use.
-        val scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
+        val scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
         //(4)
-        scriptIntrinsicBlur.setInput(input);
+        scriptIntrinsicBlur.setInput(input)
         //(5)
         // Set the blur radius
-        scriptIntrinsicBlur.setRadius(radius.toFloat());
+        scriptIntrinsicBlur.setRadius(radius.toFloat())
         //(6)
         // Start the ScriptIntrinisicBlur
-        scriptIntrinsicBlur.forEach(output);
+        scriptIntrinsicBlur.forEach(output)
         //(7)
         // Copy the output to the blurred bitmap
-        output.copyTo(inputBmp);
+        output.copyTo(inputBmp)
         //(8)
-        renderScript.destroy();
+        renderScript.destroy()
 
-        return inputBmp;
+        return inputBmp
     }
 }

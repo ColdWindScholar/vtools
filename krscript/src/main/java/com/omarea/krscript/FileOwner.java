@@ -5,7 +5,7 @@ import android.os.Process;
 import android.os.UserManager;
 
 public class FileOwner {
-    private Context context;
+    private final Context context;
     public FileOwner(Context context) {
         this.context = context;
     }

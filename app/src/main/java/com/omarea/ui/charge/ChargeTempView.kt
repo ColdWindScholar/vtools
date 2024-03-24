@@ -72,8 +72,8 @@ class ChargeTempView : View {
         val textSize = dpSize * 8.5f
         paint.textSize = textSize
 
-        val minTemperature = samples.map { it.temperature }.min()
-        val maxTemperature = samples.map { it.temperature }.max()
+        val minTemperature = samples.map { it.temperature }.minOrNull()
+        val maxTemperature = samples.map { it.temperature }.maxOrNull()
 
         val innerPadding = dpSize * 24f
         val yAxisWidth = paint.measureText(maxTemperature.toString()  + "°C")
