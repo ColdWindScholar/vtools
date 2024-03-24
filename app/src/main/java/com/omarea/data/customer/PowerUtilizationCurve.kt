@@ -22,7 +22,7 @@ class PowerUtilizationCurve(context: Context) : IEventReceiver {
     private var globalSPF = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)
     companion object {
         // 采样间隔（毫秒）
-        public val SAMPLING_INTERVAL: Long = 3000
+        val SAMPLING_INTERVAL: Long = 3000
     }
 
     override fun eventFilter(eventType: EventType): Boolean {
@@ -112,7 +112,7 @@ class PowerUtilizationCurve(context: Context) : IEventReceiver {
             // 状态
             val batteryStatus = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_STATUS)
             if (batteryStatus != BatteryManager.BATTERY_STATUS_UNKNOWN) {
-                GlobalStatus.batteryStatus = batteryStatus;
+                GlobalStatus.batteryStatus = batteryStatus
             }
         }
 

@@ -67,12 +67,12 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
             dialog.dismiss()
             copyPackageName()
         }
-        dialogView.findViewById<TextView>(R.id.app_package_name).setText(app.packageName)
+        dialogView.findViewById<TextView>(R.id.app_package_name).text = app.packageName
         dialogView.findViewById<View>(R.id.app_options_copay_path).setOnClickListener {
             dialog.dismiss()
             copyInstallPath()
         }
-        dialogView.findViewById<TextView>(R.id.app_install_path).setText(app.path)
+        dialogView.findViewById<TextView>(R.id.app_install_path).text = app.path
         dialogView.findViewById<View>(R.id.app_options_open_detail).setOnClickListener {
             dialog.dismiss()
             openDetails()
@@ -105,7 +105,7 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
             dialog.dismiss()
             buildAll()
         }
-        dialogView.findViewById<TextView>(R.id.app_options_title).setText(app.appName)
+        dialogView.findViewById<TextView>(R.id.app_options_title).text = app.appName
 
         dialogView.findViewById<View>(R.id.app_options_app_freeze).setOnClickListener {
             dialog.dismiss()
@@ -142,12 +142,12 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
             dialog.dismiss()
             copyPackageName()
         }
-        dialogView.findViewById<TextView>(R.id.app_package_name).setText(app.packageName)
+        dialogView.findViewById<TextView>(R.id.app_package_name).text = app.packageName
         dialogView.findViewById<View>(R.id.app_options_copay_path).setOnClickListener {
             dialog.dismiss()
             copyInstallPath()
         }
-        dialogView.findViewById<TextView>(R.id.app_install_path).setText(app.path)
+        dialogView.findViewById<TextView>(R.id.app_install_path).text = app.path
         dialogView.findViewById<View>(R.id.app_options_open_detail).setOnClickListener {
             dialog.dismiss()
             openDetails()
@@ -198,7 +198,7 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
             dialogView.findViewById<View>(R.id.app_options_uninstall).visibility = View.GONE
         }
 
-        dialogView.findViewById<TextView>(R.id.app_options_title).setText(app.appName)
+        dialogView.findViewById<TextView>(R.id.app_options_title).text = app.appName
 
         dialogView.findViewById<View>(R.id.app_options_app_freeze).setOnClickListener {
             dialog.dismiss()

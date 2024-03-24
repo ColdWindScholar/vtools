@@ -21,12 +21,12 @@ public class AdapterFileSelector extends BaseAdapter {
     private Runnable fileSelected;
     private File currentDir;
     private File selectedFile;
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private final Handler handler = new Handler(Looper.getMainLooper());
     private ProgressBarDialog progressBarDialog;
     private String extension;
     private boolean hasParent = false; // 是否还有父级
     private String rootDir = "/"; // 根目录
-    private boolean leaveRootDir = true; // 是否允许离开设定的rootDir到更父级的目录去
+    private final boolean leaveRootDir = true; // 是否允许离开设定的rootDir到更父级的目录去
     private boolean folderChooserMode = false; // 是否是目录选择模式（目录选择模式下不显示文件，长按目录选中）
 
     private AdapterFileSelector(File rootDir, Runnable fileSelected, ProgressBarDialog progressBarDialog, String extension) {

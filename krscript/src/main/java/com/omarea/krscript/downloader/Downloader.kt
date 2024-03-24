@@ -22,10 +22,10 @@ class Downloader(private var context: Context, private var activity: Activity? =
     }
 
     fun downloadByBrowser(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        activity?.startActivity(intent);
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.addCategory(Intent.CATEGORY_BROWSABLE)
+        intent.setData(Uri.parse(url))
+        activity?.startActivity(intent)
     }
 
     fun downloadBySystem(
@@ -78,13 +78,13 @@ class Downloader(private var context: Context, private var activity: Activity? =
 
     // 保存下载记录
     private fun addTaskHisotry(downloadId: Long, taskAliasId: String, url: String) {
-        val historyList = context.getSharedPreferences(HISTORY_CONFIG, Context.MODE_PRIVATE);
+        val historyList = context.getSharedPreferences(HISTORY_CONFIG, Context.MODE_PRIVATE)
 
-        val history = JSONObject();
-        history.put("url", url);
-        history.put("taskAliasId", taskAliasId);
+        val history = JSONObject()
+        history.put("url", url)
+        history.put("taskAliasId", taskAliasId)
 
-        historyList.edit().putString(downloadId.toString(), history.toString(2)).apply();
+        historyList.edit().putString(downloadId.toString(), history.toString(2)).apply()
         // FileWrite.writePrivateFile("".toByteArray(Charset.defaultCharset()), "downloader/", context)
     }
 
@@ -95,13 +95,13 @@ class Downloader(private var context: Context, private var activity: Activity? =
 
     // 保存下载成功后的路径
     fun saveTaskCompleted(downloadId: Long, absPath: String) {
-        val historyList = context.getSharedPreferences(HISTORY_CONFIG, Context.MODE_PRIVATE);
+        val historyList = context.getSharedPreferences(HISTORY_CONFIG, Context.MODE_PRIVATE)
         val historyStr = historyList.getString(downloadId.toString(), null)
         var taskAliasId: String? = ""
         if (historyStr != null) {
             val hisotry = JSONObject(historyStr)
             hisotry.put("absPath", absPath)
-            historyList.edit().putString(downloadId.toString(), hisotry.toString(2)).apply();
+            historyList.edit().putString(downloadId.toString(), hisotry.toString(2)).apply()
             taskAliasId = hisotry.getString("taskAliasId")
         }
         try {

@@ -38,7 +38,7 @@ class ActivityAppXposedDetails : ActivityBase() {
     fun getAddinVersion(): Int {
         var code = 0
         try {
-            val manager = getPackageManager()
+            val manager = packageManager
             val info = manager.getPackageInfo("com.omarea.vaddin", 0)
             code = info.versionCode
         } catch (e: PackageManager.NameNotFoundException) {
@@ -125,11 +125,11 @@ class ActivityAppXposedDetails : ActivityBase() {
     private fun bindService() {
         tryUnBindAddin()
         try {
-            val intent = Intent();
+            val intent = Intent()
             //绑定服务端的service
-            intent.setAction("com.omarea.vaddin.ConfigUpdateService");
+            intent.setAction("com.omarea.vaddin.ConfigUpdateService")
             //新版本（5.0后）必须显式intent启动 绑定服务
-            intent.setComponent(ComponentName("com.omarea.vaddin", "com.omarea.vaddin.ConfigUpdateService"));
+            intent.setComponent(ComponentName("com.omarea.vaddin", "com.omarea.vaddin.ConfigUpdateService"))
             //绑定的时候服务端自动创建
             if (bindService(intent, conn, Context.BIND_AUTO_CREATE)) {
             } else {
@@ -225,7 +225,7 @@ class ActivityAppXposedDetails : ActivityBase() {
         app_details_icon.setOnClickListener {
             try {
                 saveConfig()
-                startActivity(getPackageManager().getLaunchIntentForPackage(app))
+                startActivity(packageManager.getLaunchIntentForPackage(app))
             } catch (ex: Exception) {
                 Toast.makeText(applicationContext, getString(R.string.start_app_fail), Toast.LENGTH_SHORT).show()
             }
@@ -256,7 +256,7 @@ class ActivityAppXposedDetails : ActivityBase() {
                 var dialog: DialogHelper.DialogWrap? = null
                 val view = layoutInflater.inflate(R.layout.dialog_dpi_input, null)
                 val inputDpi = view.findViewById<EditText>(R.id.input_dpi).apply {
-                    setFilters(arrayOf(IntInputFilter()));
+                    filters = arrayOf(IntInputFilter())
                     if (sceneConfigInfo.dpi >= 96) {
                         setText(sceneConfigInfo.dpi.toString())
                     }
@@ -370,7 +370,4 @@ class ActivityAppXposedDetails : ActivityBase() {
         tryUnBindAddin()
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
 }

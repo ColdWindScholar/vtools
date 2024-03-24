@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * 管理应用的Shortcut
  */
 public class AppShortcutManager {
-    private Context context;
+    private final Context context;
 
     public AppShortcutManager(Context context) {
         this.context = context;

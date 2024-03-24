@@ -93,8 +93,8 @@ class ChargeTimeView : View {
         val dpSize = dp2px(this.context, 1f)
         val innerPadding = dpSize * 24f
 
-        val startTime = samples.map { it.startTime }.min()
-        val maxTime = samples.map { it.endTime }.max()
+        val startTime = samples.map { it.startTime }.minOrNull()
+        val maxTime = samples.map { it.endTime }.maxOrNull()
 
         val maxTimeMinutes:Double = (if (startTime != null && maxTime != null) {
             (maxTime - startTime) / 60000.0

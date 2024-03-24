@@ -6,7 +6,7 @@ import com.omarea.krscript.R
 import com.omarea.krscript.model.GroupNode
 
 class ListItemGroup(context: Context,
-                    final var isRootGroup: Boolean,
+                    var isRootGroup: Boolean,
                     config: GroupNode) :
         ListItemView(
                 context,

@@ -57,14 +57,14 @@ class FragmentDonate : androidx.fragment.app.Fragment(), View.OnClickListener {
 
     private fun bindClickEvent(view: View) {
         view.setOnClickListener(this)
-        if (!CheckRootStatus.lastCheckResult && "root".equals(view.getTag())) {
+        if (!CheckRootStatus.lastCheckResult && "root".equals(view.tag)) {
             view.isEnabled = false
         }
     }
 
     override fun onClick(v: View?) {
         v?.run {
-            if (!CheckRootStatus.lastCheckResult && "root".equals(getTag())) {
+            if (!CheckRootStatus.lastCheckResult && "root".equals(tag)) {
                 Toast.makeText(context, "没有获得ROOT权限，不能使用本功能", Toast.LENGTH_SHORT).show()
                 return
             }

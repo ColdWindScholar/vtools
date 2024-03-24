@@ -18,7 +18,7 @@ class CpuChartBarView : View {
         for (i in 0 until maxHistory) {
             add(0)
         }
-    };
+    }
     private var strokeWidth = 0f
     private var accentColor = 0x22888888
 

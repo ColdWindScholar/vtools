@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.omarea.vtools.R;
 
 public class AdapterString extends BaseAdapter {
-    private String[] arr;
-    private Context context;
+    private final String[] arr;
+    private final Context context;
 
     public AdapterString(Context context, String[] arr) {
         this.arr = arr;

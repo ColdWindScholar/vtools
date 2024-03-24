@@ -35,7 +35,7 @@ class Update {
     }
 
     fun checkUpdate(context: Context) {
-        val handler = Handler(Looper.getMainLooper());
+        val handler = Handler(Looper.getMainLooper())
         Thread(Runnable {
             //http://47.106.224.127/
             try {

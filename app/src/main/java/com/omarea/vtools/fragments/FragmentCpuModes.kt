@@ -49,7 +49,7 @@ class FragmentCpuModes : Fragment() {
     companion object {
         fun createPage(themeMode: ThemeMode): Fragment {
             val fragment = FragmentCpuModes()
-            fragment.themeMode = themeMode;
+            fragment.themeMode = themeMode
             return fragment
         }
     }

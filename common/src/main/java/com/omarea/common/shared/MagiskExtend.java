@@ -11,11 +11,11 @@ public class MagiskExtend {
     // source /data/adb/util_functions.sh
 
     public static String MAGISK_PATH = "/sbin/.core/img/scene_systemless/";
-    private static String MAGISK_PATH_19 = "/data/adb/modules"; //  "/sbin/.magisk/modules";
-    private static String MAGISK_ROOT_PATH1 = "/sbin/.core/img";
-    private static String MAGISK_ROOT_PATH2 = "/sbin/.magisk/img";
+    private static final String MAGISK_PATH_19 = "/data/adb/modules"; //  "/sbin/.magisk/modules";
+    private static final String MAGISK_ROOT_PATH1 = "/sbin/.core/img";
+    private static final String MAGISK_ROOT_PATH2 = "/sbin/.magisk/img";
 
-    private static String MAGISK_MODULE_NAME = "scene_systemless";
+    private static final String MAGISK_MODULE_NAME = "scene_systemless";
     //magisk 19 /data/adb/modules
     private static int supported = -1;
     private static int MagiskVersion = 0;
@@ -45,11 +45,7 @@ public class MagiskExtend {
 
         long space = new File(MAGISK_PATH).getFreeSpace();
         // 镜像空间不足
-        if (space < (require + 4096)) {
-            return false;
-        }
-
-        return true;
+        return space >= (require + 4096);
     }
 
     /**

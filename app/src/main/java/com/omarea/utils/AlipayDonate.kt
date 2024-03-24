@@ -16,7 +16,7 @@ class AlipayDonate(private var context: Context) {
     private val ALIPAY_PERSON = "HTTPS://QR.ALIPAY.COM/FKX05665KXCDCLC2YAEL0E"//个人(支付宝里面我的二维码)
     private val ALIPAY_PERSON_2_PAY = "HTTPS://QR.ALIPAY.COM/FKX05665KXCDCLC2YAEL0E"//个人(支付宝里面我的二维码,然后提示让用的收款码)
 
-    public fun jumpAlipay() {
+    fun jumpAlipay() {
         openAliPay2Pay(ALIPAY_SHOP)
     }
 

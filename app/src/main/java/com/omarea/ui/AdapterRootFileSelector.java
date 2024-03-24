@@ -24,7 +24,7 @@ public class AdapterRootFileSelector extends BaseAdapter {
     private Runnable fileDelete;
     private RootFileInfo currentDir;
     private RootFileInfo selectedFile;
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private final Handler handler = new Handler(Looper.getMainLooper());
     private ProgressBarDialog progressBarDialog;
     private String extension;
     private boolean clickSelected = true; // 点击选中

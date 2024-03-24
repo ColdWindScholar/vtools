@@ -29,19 +29,19 @@ class ActivityQuickStart : Activity() {
 
         //  得到当前界面的装饰视图
         if (Build.VERSION.SDK_INT >= 21) {
-            val decorView = getWindow().getDecorView();
+            val decorView = window.decorView
             //让应用主题内容占用系统状态栏的空间,注意:下面两个参数必须一起使用 stable 牢固的
-            val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorView.setSystemUiVisibility(option);
+            val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            decorView.systemUiVisibility = option
             //设置状态栏颜色为透明
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            window.statusBarColor = Color.TRANSPARENT
         }
 
         val extras = intent.extras
         if (extras == null || !extras.containsKey("packageName")) {
             start_state_text.text = "无效的快捷方式！"
         } else {
-            appPackageName = intent.getStringExtra("packageName")!!;
+            appPackageName = intent.getStringExtra("packageName")!!
             val pm = packageManager
 
             var appInfo: ApplicationInfo? = null
@@ -60,13 +60,13 @@ class ActivityQuickStart : Activity() {
     }
 
     private class CheckRootSuccess(context: ActivityQuickStart, private var appPackageName: String) : Runnable {
-        private var context: WeakReference<ActivityQuickStart>;
+        private var context: WeakReference<ActivityQuickStart>
         override fun run() {
             context.get()!!.start_state_text.text = "正在启动应用..."
             context.get()!!.hasRoot = true
 
             if (appPackageName.equals("com.android.vending")) {
-                GAppsUtilis().enable(KeepShellPublic.secondaryKeepShell);
+                GAppsUtilis().enable(KeepShellPublic.secondaryKeepShell)
             } else {
                 KeepShellPublic.doCmdSync("pm unsuspend ${appPackageName}\npm unhide ${appPackageName}\npm enable ${appPackageName}\n")
             }

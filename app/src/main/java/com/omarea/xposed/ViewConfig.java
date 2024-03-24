@@ -168,7 +168,7 @@ public class ViewConfig {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                         try {
-                            if ((RecyclerView) param.thisObject != null) {
+                            if (param.thisObject != null) {
                                 param.setResult(View.OVER_SCROLL_ALWAYS);
                             }
                         } catch (Exception ignored) {

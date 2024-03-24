@@ -78,25 +78,25 @@ class FpsDataView : View {
     private var rightDimension = DIMENSION.values().first()
     private var sessionId:Long = 0L
 
-    public fun setSessionId(sessionId: Long) {
+    fun setSessionId(sessionId: Long) {
         if (this.sessionId != sessionId) {
             this.sessionId = sessionId
             invalidate()
         }
     }
 
-    public fun getSessionId(): Long {
+    fun getSessionId(): Long {
         return this.sessionId
     }
 
-    public fun setRightDimension(rightDIMENSION: DIMENSION) {
+    fun setRightDimension(rightDIMENSION: DIMENSION) {
         if (this.rightDimension != rightDIMENSION) {
             this.rightDimension = rightDIMENSION
             invalidate()
         }
     }
 
-    public fun getRightDimension(): DIMENSION {
+    fun getRightDimension(): DIMENSION {
         return this.rightDimension
     }
 

@@ -75,7 +75,7 @@ class AdapterSessions(private val context: Context, private val list: ArrayList<
     }
 
     override fun getItemCount(): Int {
-        return list.size ?: 0
+        return list.size
     }
     private var onItemClickListener: OnItemClickListener? = null
     private var onItemDeleteClickListener: OnItemClickListener? = null

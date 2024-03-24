@@ -698,6 +698,6 @@ class PageConfigReader {
             vitualRootNode = NodeInfoBase(pageConfigAbsPath)
         }
 
-        return ScriptEnvironmen.executeResultRoot(context, scriptIn, vitualRootNode);
+        return ScriptEnvironmen.executeResultRoot(context, scriptIn, vitualRootNode)
     }
 }

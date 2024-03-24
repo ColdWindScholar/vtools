@@ -68,7 +68,7 @@ class ActivityFreezeApps : ActivityBase() {
         // Allocate memory for Renderscript to work with
         //(2)
         val input = Allocation.createFromBitmap(renderScript, inputBmp)
-        val output = Allocation.createTyped(renderScript, input.getType())
+        val output = Allocation.createTyped(renderScript, input.type)
         //(3)
         // Load up an instance of the specific script that we want to use.
         val scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
@@ -126,7 +126,7 @@ class ActivityFreezeApps : ActivityBase() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                (freeze_apps.adapter as Filterable).getFilter().filter(if (s == null) "" else s.toString())
+                (freeze_apps.adapter as Filterable).filter.filter(if (s == null) "" else s.toString())
             }
         })
     }

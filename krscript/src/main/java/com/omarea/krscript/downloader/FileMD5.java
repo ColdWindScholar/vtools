@@ -19,7 +19,7 @@ public class FileMD5 {
         }
         MessageDigest digest = null;
         FileInputStream in = null;
-        byte buffer[] = new byte[1024];
+        byte[] buffer = new byte[1024];
         int len;
         try {
             digest = MessageDigest.getInstance("MD5");
@@ -36,7 +36,7 @@ public class FileMD5 {
     }
 
     public String bytesToHexString(byte[] src) {
-        StringBuilder stringBuilder = new StringBuilder("");
+        StringBuilder stringBuilder = new StringBuilder();
         if (src == null || src.length <= 0) {
             return null;
         }

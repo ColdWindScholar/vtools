@@ -40,11 +40,11 @@ class SceneMode private constructor(private val context: AccessibilityScenceMode
 
     private val floatScreenRotation = FloatScreenRotation(context)
 
-    public fun cancelFreezeAppThread() {
+    fun cancelFreezeAppThread() {
         PropsUtils.setPorp("vtools.freeze_delay", "")
     }
 
-    public class FreezeAppThread(
+    class FreezeAppThread(
         private val context: Context,
         private val ignoreState: Boolean = false,
         private val delaySecond: Int = 0
@@ -103,7 +103,7 @@ class SceneMode private constructor(private val context: AccessibilityScenceMode
 
         fun suspendApp(app: String) {
             if (app.equals("com.android.vending")) {
-                GAppsUtilis().disable(KeepShellPublic.secondaryKeepShell);
+                GAppsUtilis().disable(KeepShellPublic.secondaryKeepShell)
             } else {
                 KeepShellPublic.doCmdSync("pm suspend ${app}\nam force-stop ${app} || am kill current ${app}")
             }
@@ -111,7 +111,7 @@ class SceneMode private constructor(private val context: AccessibilityScenceMode
 
         fun freezeApp(app: String) {
             if (app.equals("com.android.vending")) {
-                GAppsUtilis().disable(KeepShellPublic.secondaryKeepShell);
+                GAppsUtilis().disable(KeepShellPublic.secondaryKeepShell)
             } else {
                 KeepShellPublic.doCmdSync("pm disable ${app}")
             }
@@ -121,7 +121,7 @@ class SceneMode private constructor(private val context: AccessibilityScenceMode
             getCurrentInstance()?.setFreezeAppLeaveTime(app)
 
             if (app.equals("com.android.vending")) {
-                GAppsUtilis().enable(KeepShellPublic.secondaryKeepShell);
+                GAppsUtilis().enable(KeepShellPublic.secondaryKeepShell)
             } else {
                 KeepShellPublic.doCmdSync("pm unsuspend ${app}\npm enable ${app}")
             }
@@ -212,8 +212,8 @@ class SceneMode private constructor(private val context: AccessibilityScenceMode
         freezList.remove(app)
     }
 
-    var brightnessMode = -1;
-    var screenBrightness = -1;
+    var brightnessMode = -1
+    var screenBrightness = -1
     var currentSceneConfig: SceneConfigInfo? = null
 
     // 备份亮度设置
@@ -232,7 +232,7 @@ class SceneMode private constructor(private val context: AccessibilityScenceMode
     // 恢复亮度设置
     private fun resumeBrightnessState() {
         try {
-            val modeBackup = brightnessMode;
+            val modeBackup = brightnessMode
             if (modeBackup > -1) {
                 Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE, modeBackup)
                 contentResolver.notifyChange(Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS_MODE), null)

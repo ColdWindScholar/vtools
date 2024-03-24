@@ -41,7 +41,7 @@ class FloatScreenRotation(mContext: Context) {
     private var show: Boolean = false
     private val wm = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
-    public fun update(config: SceneConfigInfo) {
+    fun update(config: SceneConfigInfo) {
         val screenOrientation = config.screenOrientation
 
         if (screenOrientation == params.screenOrientation) {
@@ -68,11 +68,11 @@ class FloatScreenRotation(mContext: Context) {
         }
     }
 
-    public fun remove() {
+    fun remove() {
         if (show) {
             wm.removeViewImmediate(view)
         }
-        this.show = false;
+        this.show = false
         params.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 }

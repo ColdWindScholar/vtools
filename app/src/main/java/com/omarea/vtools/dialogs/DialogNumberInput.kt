@@ -26,17 +26,17 @@ class DialogNumberInput(private val context: Context) {
             if (current > dialogRequest.min) {
                 current -= 1
             }
-            value.setText(current.toString())
+            value.text = current.toString()
         }
         dialog.findViewById<ImageButton>(R.id.number_input_plus).setOnClickListener {
             if (current < dialogRequest.max) {
                 current += 1
             }
-            value.setText(current.toString())
+            value.text = current.toString()
         }
-        dialog.findViewById<TextView>(R.id.number_input_help).setText(dialogRequest.min.toString() + " ~ " + dialogRequest.max.toString())
+        dialog.findViewById<TextView>(R.id.number_input_help).text = dialogRequest.min.toString() + " ~ " + dialogRequest.max.toString()
 
-        value.setText(dialogRequest.default.toString())
+        value.text = dialogRequest.default.toString()
         alertDialog = DialogHelper.confirm(context, dialog, DialogHelper.DialogButton(context.getString(R.string.btn_confirm), {
             val text = value.text.toString()
             if (text != current.toString()) {

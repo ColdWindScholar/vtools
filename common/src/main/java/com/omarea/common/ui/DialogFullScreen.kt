@@ -62,11 +62,7 @@ open class DialogFullScreen(private val layout: Int, private val darkMode: Boole
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    public fun closeView() {
+    fun closeView() {
         try {
             dismiss()
         } catch (ex: java.lang.Exception) {

@@ -183,7 +183,8 @@ class ActivitySystemScene : ActivityBase() {
 
     private fun buildCustomTaskItemView(timingTaskInfo: TimingTaskInfo): SceneTaskItem {
         val sceneTaskItem = SceneTaskItem(context, timingTaskInfo)
-        sceneTaskItem.setLayoutParams(LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT))
+        sceneTaskItem.layoutParams =
+            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         sceneTaskItem.isClickable = true
         return sceneTaskItem
     }
@@ -208,7 +209,8 @@ class ActivitySystemScene : ActivityBase() {
 
     private fun addCustomTriggerView(triggerInfo: TriggerInfo) {
         val itemView = SceneTriggerItem(context, triggerInfo)
-        itemView.setLayoutParams(LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT))
+        itemView.layoutParams =
+            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         itemView.isClickable = true
 
         system_scene_trigger_list.addView(itemView)

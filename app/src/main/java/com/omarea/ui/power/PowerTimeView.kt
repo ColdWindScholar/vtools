@@ -86,14 +86,14 @@ class PowerTimeView : View {
         return value.toInt()
     }
 
-    public fun setLadder(ladder: Boolean) {
+    fun setLadder(ladder: Boolean) {
         if (this.ladder != ladder) {
             this.ladder = ladder
             invalidate()
         }
     }
 
-    public fun getLadder(): Boolean {
+    fun getLadder(): Boolean {
         return this.ladder
     }
 
@@ -108,8 +108,8 @@ class PowerTimeView : View {
         val dpSize = dp2px(this.context, 1f)
         val innerPadding = dpSize * 24f
 
-        val startTime = samples.map { it.startTime }.min()
-        val maxTime = samples.map { it.endTime }.max()
+        val startTime = samples.map { it.startTime }.minOrNull()
+        val maxTime = samples.map { it.endTime }.maxOrNull()
         val maxTimeMinutes = (if (startTime != null && maxTime != null) ((maxTime - startTime) / 60000.0).toDouble() else 30.0)
         val minutes = getPerfectXMax(maxTimeMinutes)
 

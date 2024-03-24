@@ -158,10 +158,6 @@ class ActivityFpsChart : ActivityBase(), AdapterSessions.OnItemClickListener {
         adapter.removeItem(position)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     public override fun onPause() {
         super.onPause()
     }

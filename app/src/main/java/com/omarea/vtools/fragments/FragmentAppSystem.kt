@@ -99,14 +99,14 @@ class FragmentAppSystem(private val myHandler: Handler) : androidx.fragment.app.
                 lv.adapter = adapterObj
                 lv.onItemClickListener = OnItemClickListener { list, itemView, postion, _ ->
                     if (postion == 0) {
-                        val checkBox = itemView.findViewById(R.id.select_state_all) as CheckBox
+                        val checkBox: CheckBox = itemView.findViewById(R.id.select_state_all)
                         checkBox.isChecked = !checkBox.isChecked
                         if (adapterAppList.get() != null) {
                             adapterAppList.get()!!.setSelecteStateAll(checkBox.isChecked)
                             adapterAppList.get()!!.notifyDataSetChanged()
                         }
                     } else {
-                        val checkBox = itemView.findViewById(R.id.select_state) as CheckBox
+                        val checkBox: CheckBox = itemView.findViewById(R.id.select_state)
                         checkBox.isChecked = !checkBox.isChecked
                         val all = lv.findViewById<CheckBox>(R.id.select_state_all)
                         if (adapterAppList.get() != null) {
@@ -123,7 +123,7 @@ class FragmentAppSystem(private val myHandler: Handler) : androidx.fragment.app.
         }
     }
 
-    public var searchText: String
+    var searchText: String
         get () {
             return keywords
         }

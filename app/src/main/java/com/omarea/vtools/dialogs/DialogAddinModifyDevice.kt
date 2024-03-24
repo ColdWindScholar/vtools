@@ -52,16 +52,16 @@ class DialogAddinModifyDevice(var context: ActivityBase) {
 
         val layoutInflater = LayoutInflater.from(context)
         val dialog = layoutInflater.inflate(R.layout.dialog_addin_device, null)
-        editModel = dialog.findViewById(R.id.dialog_addin_model) as EditText
-        editBrand = dialog.findViewById(R.id.dialog_addin_brand) as EditText
-        editProductName = dialog.findViewById(R.id.dialog_addin_name) as EditText
-        editDevice = dialog.findViewById(R.id.dialog_addin_device) as EditText
-        editManufacturer = dialog.findViewById(R.id.dialog_addin_manufacturer) as EditText
+        editModel = dialog.findViewById<EditText>(R.id.dialog_addin_model)!!
+        editBrand = dialog.findViewById<EditText>(R.id.dialog_addin_brand)!!
+        editProductName = dialog.findViewById<EditText>(R.id.dialog_addin_name)!!
+        editDevice = dialog.findViewById<EditText>(R.id.dialog_addin_device)!!
+        editManufacturer = dialog.findViewById<EditText>(R.id.dialog_addin_manufacturer)!!
 
-        (dialog.findViewById(R.id.dialog_addin_default) as Button).setOnClickListener {
+        (dialog.findViewById<Button>(R.id.dialog_addin_default)!!).setOnClickListener {
             setDefault()
         }
-        (dialog.findViewById(R.id.dialog_chooser) as Button).setOnClickListener {
+        (dialog.findViewById<Button>(R.id.dialog_chooser)!!).setOnClickListener {
             templateChooser()
         }
         DialogHelper.confirm(context, "", "", dialog, DialogHelper.DialogButton("保存重启", {

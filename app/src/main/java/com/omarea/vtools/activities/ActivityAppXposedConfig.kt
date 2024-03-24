@@ -38,7 +38,7 @@ class ActivityAppXposedConfig : ActivityBase() {
         setContentView(R.layout.activity_app_xposed_config)
 
         setBackArrow()
-        globalSPF = context!!.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)
+        globalSPF = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)
         xposedExtension = XposedExtension(this)
 
         this.onViewCreated()
@@ -86,7 +86,7 @@ class ActivityAppXposedConfig : ActivityBase() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_APP_CONFIG && data != null && displayList != null) {
             try {
-                if (resultCode == AppCompatActivity.RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     val adapter = (scene_app_list.adapter as XposedAppsAdapter)
                     var index = -1
                     val packageName = data.extras!!.getString("app")

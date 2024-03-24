@@ -2,7 +2,7 @@ package com.omarea.library.shell
 
 import com.omarea.common.shell.KeepShellPublic
 
-class DDRUtils() {
+class DDRUtils {
     fun getDDRType(): Int {
         val result = KeepShellPublic.doCmdSync("od -An -tx /proc/device-tree/memory/ddr_device_type")
         when (result) {

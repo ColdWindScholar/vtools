@@ -24,7 +24,7 @@ class WriteSettings {
                 return true
             }
         } catch (ex: Exception) {
-            return false;
+            return false
         }
     }
 
@@ -45,7 +45,7 @@ class WriteSettings {
             try {
                 Toast.makeText(context, "请为Scene授予“修改系统设置”权限，以确保“场景模式”功能能正常运行！", Toast.LENGTH_LONG).show()
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri = Uri.fromParts("package", context.getPackageName(), null)
+                val uri = Uri.fromParts("package", context.packageName, null)
                 intent.setData(uri)
                 context.startActivity(intent)
             } catch (ex: Exception) {

@@ -5,6 +5,7 @@ import com.omarea.krscript.model.ShellHandlerBase;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class SimpleShellWatcher {
 
@@ -22,7 +23,7 @@ public class SimpleShellWatcher {
             public void run() {
                 String line;
                 try {
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
                     while ((line = bufferedReader.readLine()) != null) {
                         shellHandlerBase.sendMessage(shellHandlerBase.obtainMessage(ShellHandlerBase.EVENT_REDE, line + "\n"));
                     }
@@ -35,7 +36,7 @@ public class SimpleShellWatcher {
             public void run() {
                 String line;
                 try {
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, "UTF-8"));
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, StandardCharsets.UTF_8));
                     while ((line = bufferedReader.readLine()) != null) {
                         shellHandlerBase.sendMessage(shellHandlerBase.obtainMessage(ShellHandlerBase.EVENT_READ_ERROR, line + "\n"));
                     }

@@ -110,14 +110,14 @@ open class ModeSwitcher {
         private var currentPowercfg: String = ""
         private var currentPowercfgApp: String = ""
 
-        public fun getCurrentPowerMode(): String {
+        fun getCurrentPowerMode(): String {
             if (!currentPowercfg.isEmpty()) {
                 return currentPowercfg
             }
             return PropsUtils.getProp("vtools.powercfg")
         }
 
-        public fun getCurrentPowermodeApp(): String {
+        fun getCurrentPowermodeApp(): String {
             if (!currentPowercfgApp.isEmpty()) {
                 return currentPowercfgApp
             }
@@ -275,12 +275,12 @@ open class ModeSwitcher {
     }
 
     // 是否已经完成指定模式的自定义
-    public fun modeReplaced(mode: String): Boolean {
+    fun modeReplaced(mode: String): Boolean {
         return CpuConfigStorage(Scene.context).exists(mode)
     }
 
     // 是否已完成四个模式的配置
-    public fun modeConfigCompleted(): Boolean {
+    fun modeConfigCompleted(): Boolean {
         if (CpuConfigInstaller().outsideConfigInstalled()) {
             return true
         } else {
@@ -301,7 +301,7 @@ open class ModeSwitcher {
     }
 
     // 是否已经完成所有模式的自定义
-    public fun allModeReplaced(): Boolean {
+    fun allModeReplaced(): Boolean {
         val storage = CpuConfigStorage(Scene.context)
 
         return storage.exists(POWERSAVE) &&
@@ -310,7 +310,7 @@ open class ModeSwitcher {
                 storage.exists(FAST)
     }
 
-    public fun clearInitedState() {
+    fun clearInitedState() {
         inited = false
     }
 }

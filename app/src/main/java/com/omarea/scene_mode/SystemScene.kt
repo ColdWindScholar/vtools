@@ -28,7 +28,7 @@ class SystemScene(private var context: Context) {
 
     private fun isWifiApOpen(context: Context): Boolean {
         try {
-            val manager = context.getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val manager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
             //通过放射获取 getWifiApState()方法
             val method = manager.javaClass.getDeclaredMethod("getWifiApState")
             //调用getWifiApState() ，获取返回值
@@ -122,7 +122,7 @@ class SystemScene(private var context: Context) {
             // context.performGlobalAction(GLOBAL_ACTION_HOME)
             val intent = Intent(Intent.ACTION_MAIN)
             intent.addCategory(Intent.CATEGORY_HOME)
-            val res = context.getPackageManager().resolveActivity(intent, 0)!!
+            val res = context.packageManager.resolveActivity(intent, 0)!!
             if (res.activityInfo == null) {
             } else if (res.activityInfo.packageName == "android") {
             } else {

@@ -16,7 +16,7 @@ internal class InputMethodApp(private var context: Context) {
     fun getInputMethods(): ArrayList<String> {
         // settings get secure enabled_input_methods
         try {
-            val enable = Settings.Secure.getString(context.getContentResolver(),
+            val enable = Settings.Secure.getString(context.contentResolver,
                     Settings.Secure.ENABLED_INPUT_METHODS)
             if (!enable.isNullOrEmpty()) {
                 val list = arrayListOf<String>()

@@ -64,13 +64,13 @@ class SceneFreezeProvider : ContentProvider() {
             if (whiteList.contains(source) || allowXposedOpen()) {
                 SceneMode.unfreezeApp(packageName)
             }
-            return uri;
+            return uri
         }
         return null
     }
 
     override fun onCreate(): Boolean {
-        return true;
+        return true
     }
 
     override fun query(uri: Uri, projection: Array<String>?, selection: String?,

@@ -33,7 +33,7 @@ class DialogAddinModifyDPI(var context: Activity) {
 
     @SuppressLint("ApplySharedPref")
     private fun backupDisplay(point: Point, dm: DisplayMetrics, context: Context) {
-        val spf = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE);
+        val spf = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)
         if (!spf.contains(BACKUP_SCREEN_RATIO)) {
             spf.edit().putFloat(BACKUP_SCREEN_RATIO, point.y / point.x.toFloat()).commit()
         }
@@ -44,29 +44,29 @@ class DialogAddinModifyDPI(var context: Activity) {
     }
 
     private fun getHeightScaleValue(width: Int): Int {
-        val spf = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE);
+        val spf = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)
         return (width * spf.getFloat(BACKUP_SCREEN_RATIO, DEFAULT_RATIO)).toInt()
     }
 
     private fun getDpiScaleValue(width: Int): Int {
-        val spf = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE);
+        val spf = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)
         return (spf.getInt(BACKUP_SCREEN_DPI, DEFAULT_DPI) * width / spf.getInt(BACKUP_SCREEN_WIDTH, DEFAULT_WIDTH))
     }
 
     fun modifyDPI(display: Display, context: Activity) {
         val layoutInflater = LayoutInflater.from(context)
         val dialog = layoutInflater.inflate(R.layout.dialog_addin_dpi, null)
-        val dpiInput = dialog.findViewById(R.id.dialog_addin_dpi_dpiinput) as EditText
-        val widthInput = dialog.findViewById(R.id.dialog_addin_dpi_width) as EditText
-        val heightInput = dialog.findViewById(R.id.dialog_addin_dpi_height) as EditText
-        val quickChange = dialog.findViewById(R.id.dialog_addin_dpi_quickchange) as CheckBox
+        val dpiInput: EditText = dialog.findViewById(R.id.dialog_addin_dpi_dpiinput)
+        val widthInput: EditText = dialog.findViewById(R.id.dialog_addin_dpi_width)
+        val heightInput: EditText = dialog.findViewById(R.id.dialog_addin_dpi_height)
+        val quickChange: CheckBox = dialog.findViewById(R.id.dialog_addin_dpi_quickchange)
 
         val dm = DisplayMetrics()
         display.getMetrics(dm)
         val point = Point()
         display.getRealSize(point)
 
-        backupDisplay(point, dm, context);
+        backupDisplay(point, dm, context)
 
         dpiInput.setText(dm.densityDpi.toString())
         widthInput.setText(point.x.toString())
@@ -120,9 +120,9 @@ class DialogAddinModifyDPI(var context: Activity) {
                     cmd.append("\n")
                 } else {
                     if (MagiskExtend.moduleInstalled()) {
-                        KeepShellPublic.doCmdSync("wm density reset");
-                        MagiskExtend.setSystemProp("ro.sf.lcd_density", dpi.toString());
-                        MagiskExtend.setSystemProp("vendor.display.lcd_density", dpi.toString());
+                        KeepShellPublic.doCmdSync("wm density reset")
+                        MagiskExtend.setSystemProp("ro.sf.lcd_density", dpi.toString())
+                        MagiskExtend.setSystemProp("vendor.display.lcd_density", dpi.toString())
                         Toast.makeText(context, "已通过Magisk更改参数，请重启手机~", Toast.LENGTH_SHORT).show()
                     } else {
                         cmd.append(CommonCmds.MountSystemRW)
@@ -186,7 +186,7 @@ class DialogAddinModifyDPI(var context: Activity) {
                     } else {
                         handler.post {
                             try {
-                                timeoutView.setText(timeOut.toString())
+                                timeoutView.text = timeOut.toString()
                             } catch (ex: Exception) {
                             }
                         }
@@ -194,7 +194,7 @@ class DialogAddinModifyDPI(var context: Activity) {
                 }
             }, 1000, 1000)
 
-            timeoutView.setText(timeOut.toString())
+            timeoutView.text = timeOut.toString()
             view.findViewById<Button>(R.id.btn_cancel).setOnClickListener {
                 dialog.dismiss()
                 resetDisplay()

@@ -13,8 +13,8 @@ import java.util.HashMap;
 
 public class AdapterSwaplist extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<HashMap<String, String>> list;
+    private final Context context;
+    private final ArrayList<HashMap<String, String>> list;
 
     public AdapterSwaplist(Context context, ArrayList<HashMap<String, String>> list) {
         this.context = context;

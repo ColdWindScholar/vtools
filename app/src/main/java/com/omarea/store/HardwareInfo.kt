@@ -8,7 +8,7 @@ import com.omarea.library.shell.PlatformUtils
 class HardwareInfo {
     private val config = Scene.context.getSharedPreferences("HardwareInfo", Context.MODE_PRIVATE)
 
-    public fun getPlatform (): String {
+    fun getPlatform (): String {
         if (!config.contains("platform")) {
             val result = PlatformUtils().getCPUName()
             if (result.isNotEmpty() && result != "error") {
@@ -18,7 +18,7 @@ class HardwareInfo {
         return config.getString("platform", "")!!
     }
 
-    public fun getDDRType (): Int {
+    fun getDDRType (): Int {
         if (!config.contains("ddr_type")) {
             val result = DDRUtils().getDDRType()
             if (result > 0) {
@@ -28,7 +28,7 @@ class HardwareInfo {
         return config.getInt("ddr_type", -1)
     }
 
-    public fun preInit() {
+    fun preInit() {
         this.getPlatform()
         this.getDDRType()
     }

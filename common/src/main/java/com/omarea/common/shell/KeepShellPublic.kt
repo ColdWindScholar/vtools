@@ -38,8 +38,8 @@ object KeepShellPublic {
         }
     }
 
-    public val defaultKeepShell = KeepShell()
-    public val secondaryKeepShell = KeepShell()
+    val defaultKeepShell = KeepShell()
+    val secondaryKeepShell = KeepShell()
 
     fun getDefaultInstance(): KeepShell {
         return if (defaultKeepShell.isIdle || !secondaryKeepShell.isIdle) {

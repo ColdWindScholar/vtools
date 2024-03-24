@@ -65,7 +65,7 @@ class ActivityMiuiThermal : ActivityBase() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CFG_FILE && data != null && data.extras != null) {
-            val fileName = data.extras!!.getString("file");
+            val fileName = data.extras!!.getString("file")
             if (!fileName!!.startsWith("thermal")) {
                 currentFile = fileName
                 title = fileName

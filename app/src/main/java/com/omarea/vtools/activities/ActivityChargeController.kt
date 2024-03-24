@@ -191,17 +191,18 @@ class ActivityChargeController : ActivityBase() {
             Scene.toast(R.string.battery_charge_resumed, Toast.LENGTH_LONG)
         }
 
-        battery_get_up.setText(minutes2Str(spf.getInt(SpfConfig.CHARGE_SPF_TIME_GET_UP, SpfConfig.CHARGE_SPF_TIME_GET_UP_DEFAULT)))
+        battery_get_up.text = minutes2Str(spf.getInt(SpfConfig.CHARGE_SPF_TIME_GET_UP, SpfConfig.CHARGE_SPF_TIME_GET_UP_DEFAULT))
         battery_get_up.setOnClickListener {
             val nightModeGetUp = spf.getInt(SpfConfig.CHARGE_SPF_TIME_GET_UP, SpfConfig.CHARGE_SPF_TIME_GET_UP_DEFAULT)
             TimePickerDialog(this.context, { view, hourOfDay, minute ->
                 spf.edit().putInt(SpfConfig.CHARGE_SPF_TIME_GET_UP, hourOfDay * 60 + minute).apply()
-                battery_get_up.setText(String.format(getString(R.string.battery_night_mode_time), hourOfDay, minute))
+                battery_get_up.text =
+                    String.format(getString(R.string.battery_night_mode_time), hourOfDay, minute)
                 notifyConfigChanged()
             }, nightModeGetUp / 60, nightModeGetUp % 60, true).show()
         }
 
-        battery_sleep.setText(minutes2Str(spf.getInt(SpfConfig.CHARGE_SPF_TIME_SLEEP, SpfConfig.CHARGE_SPF_TIME_SLEEP_DEFAULT)))
+        battery_sleep.text = minutes2Str(spf.getInt(SpfConfig.CHARGE_SPF_TIME_SLEEP, SpfConfig.CHARGE_SPF_TIME_SLEEP_DEFAULT))
         battery_sleep.setOnClickListener {
             val nightModeSleep = spf.getInt(SpfConfig.CHARGE_SPF_TIME_SLEEP, SpfConfig.CHARGE_SPF_TIME_SLEEP_DEFAULT)
             TimePickerDialog(this.context, { _, hourOfDay, minute ->
@@ -384,10 +385,6 @@ class ActivityChargeController : ActivityBase() {
             timer!!.cancel()
             timer = null
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     private var qcSettingSuupport = false

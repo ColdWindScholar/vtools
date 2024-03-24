@@ -4,7 +4,7 @@ public class VirtualCameraInfo {
     public VirtualCameraInfo(int cameraId, double zoomRatio) {
         this.cameraId = cameraId;
         this.zoomRatio = zoomRatio;
-        this.cameraName = "" + zoomRatio + "×";
+        this.cameraName = zoomRatio + "×";
     }
     public VirtualCameraInfo(int cameraId, String cameraName) {
         this.cameraId = cameraId;

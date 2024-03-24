@@ -67,7 +67,4 @@ class ActivityCustomCommand : ActivityBase() {
         title = getString(R.string.menu_custom_command)
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
 }

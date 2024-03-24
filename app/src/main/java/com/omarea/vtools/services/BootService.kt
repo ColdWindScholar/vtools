@@ -41,7 +41,7 @@ class BootService : IntentService("vtools-boot") {
     private lateinit var mPowerManager: PowerManager
     private lateinit var mWakeLock: PowerManager.WakeLock
     override fun onHandleIntent(intent: Intent?) {
-        mPowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager;
+        mPowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
         /*
             标记值                   CPU  屏幕  键盘
             PARTIAL_WAKE_LOCK       开启  关闭  关闭
@@ -49,7 +49,7 @@ class BootService : IntentService("vtools-boot") {
             SCREEN_BRIGHT_WAKE_LOCK 开启  变亮  关闭
             FULL_WAKE_LOCK          开启  变亮  变亮
         */
-        mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "scene:BootService");
+        mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "scene:BootService")
         mWakeLock.acquire(10 * 60 * 1000) // 默认限制10分钟
 
         nm = getSystemService(NOTIFICATION_SERVICE) as NotificationManager

@@ -84,12 +84,12 @@ class FloatMonitor(private val mContext: Context) {
         params.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL or LayoutParams.FLAG_NOT_FOCUSABLE or LayoutParams.FLAG_FULLSCREEN
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            params.layoutInDisplayCutoutMode = LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
 
         val navHeight = 0
         if (navHeight > 0) {
-            val display = mWindowManager!!.getDefaultDisplay()
+            val display = mWindowManager!!.defaultDisplay
             val p = Point()
             display.getRealSize(p)
             params.y = -navHeight
@@ -126,8 +126,8 @@ class FloatMonitor(private val mContext: Context) {
                     if (event != null) {
                         when (event.action) {
                             MotionEvent.ACTION_DOWN -> {
-                                touchStartX = event.getX()
-                                touchStartY = event.getY()
+                                touchStartX = event.x
+                                touchStartY = event.y
                                 touchStartRawX = event.rawX
                                 touchStartRawY = event.rawY
                                 isTouchDown = true
@@ -211,7 +211,7 @@ class FloatMonitor(private val mContext: Context) {
 
     private var totalMem = 0
     private var availMem = 0
-    private var coreCount = -1;
+    private var coreCount = -1
     private var showOtherInfo = false
     private var clusters = ArrayList<Array<String>>()
     private var clustersFreq = ArrayList<String>()
@@ -227,14 +227,6 @@ class FloatMonitor(private val mContext: Context) {
     }
 
     private var configSpf: SharedPreferences? = null
-    private val config: SharedPreferences
-        get () {
-            if (configSpf == null) {
-                val soc = PlatformUtils().getCPUName()
-                configSpf = mContext.getSharedPreferences(soc, Context.MODE_PRIVATE)
-            }
-            return configSpf!!
-    }
 
     private fun updateInfo() {
         if (coreCount < 1) {
@@ -268,7 +260,7 @@ class FloatMonitor(private val mContext: Context) {
 
         var cpuLoad = cpuLoadUtils.cpuLoadSum
         if (cpuLoad < 0) {
-            cpuLoad = 0.toDouble();
+            cpuLoad = 0.toDouble()
         }
 
         // 电池电流
@@ -303,7 +295,7 @@ class FloatMonitor(private val mContext: Context) {
                     }
                     if (cluster.isNotEmpty()) {
                         try {
-                            val title = "#" + cluster[0] + "~" + cluster[cluster.size - 1] + "  " + subFreqStr(clustersFreq.get(clusterIndex)) + "Mhz";
+                            val title = "#" + cluster[0] + "~" + cluster[cluster.size - 1] + "  " + subFreqStr(clustersFreq.get(clusterIndex)) + "Mhz"
                             append(whiteBoldSpan(title))
 
                             val otherInfos = StringBuilder("")
@@ -345,7 +337,7 @@ class FloatMonitor(private val mContext: Context) {
 
         myHandler.post {
             if (showOtherInfo) {
-                otherInfo?.setText(null)
+                otherInfo?.text = null
 
                 otherInfo?.text = otherInfoBuilder
             }
@@ -359,8 +351,8 @@ class FloatMonitor(private val mContext: Context) {
             }
 
             temperatureChart!!.setData(100.0, 100.0 - GlobalStatus.batteryCapacity, temperature)
-            temperatureText!!.setText(temperature.toString() + "°C")
-            batteryLevelText!!.setText(GlobalStatus.batteryCapacity.toString() + "%")
+            temperatureText!!.text = temperature.toString() + "°C"
+            batteryLevelText!!.text = GlobalStatus.batteryCapacity.toString() + "%"
             chargerView!!.visibility = (if (GlobalStatus.batteryStatus == BatteryManager.BATTERY_STATUS_CHARGING) {
                 View.VISIBLE
             } else {
@@ -428,7 +420,7 @@ class FloatMonitor(private val mContext: Context) {
 
     companion object {
         private var mWindowManager: WindowManager? = null
-        public var show: Boolean? = false
+        var show: Boolean? = false
 
         @SuppressLint("StaticFieldLeak")
         private var mView: View? = null

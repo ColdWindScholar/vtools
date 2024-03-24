@@ -84,14 +84,14 @@ class ActivityAppRetrieve : ActivityBase() {
                 adapterAppList = WeakReference(adapterObj)
                 hidden_app.onItemClickListener = AdapterView.OnItemClickListener { _, itemView, postion, _ ->
                     if (postion == 0) {
-                        val checkBox = itemView.findViewById(R.id.select_state_all) as CheckBox
+                        val checkBox: CheckBox = itemView.findViewById(R.id.select_state_all)
                         checkBox.isChecked = !checkBox.isChecked
                         if (adapterAppList?.get() != null) {
                             adapterAppList?.get()!!.setSelecteStateAll(checkBox.isChecked)
                             adapterAppList?.get()!!.notifyDataSetChanged()
                         }
                     } else {
-                        val checkBox = itemView.findViewById(R.id.select_state) as CheckBox
+                        val checkBox: CheckBox = itemView.findViewById(R.id.select_state)
                         checkBox.isChecked = !checkBox.isChecked
                         val all = hidden_app.findViewById<CheckBox>(R.id.select_state_all)
                         if (adapterAppList?.get() != null) {

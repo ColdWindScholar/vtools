@@ -44,7 +44,7 @@ internal class AlwaysNotification(
     private var notificationManager: NotificationManager? = null
     private var globalSPF = context.getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)
 
-    private fun getAppName(packageName: String): CharSequence? {
+    private fun getAppName(packageName: String): CharSequence {
         try {
             return context.packageManager.getPackageInfo(packageName, 0).applicationInfo.loadLabel(context.packageManager)
         } catch (ex: Exception) {

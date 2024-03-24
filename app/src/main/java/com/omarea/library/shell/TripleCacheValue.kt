@@ -29,7 +29,7 @@ abstract class TripleCacheValue(private val context: Context, private val storag
         return value ?: ""
     }
 
-    public fun toInt(): Int {
+    fun toInt(): Int {
         val value = this.value
         if (value.isNullOrEmpty()) {
             return 0

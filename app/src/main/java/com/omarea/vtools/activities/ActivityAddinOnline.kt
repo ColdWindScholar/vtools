@@ -103,7 +103,7 @@ class ActivityAddinOnline : ActivityBase() {
         }
 
         // 处理loading、文件下载
-        vtools_online.setWebViewClient(object : WebViewClient() {
+        vtools_online.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 progressBarDialog.hideDialog()
@@ -126,29 +126,29 @@ class ActivityAddinOnline : ActivityBase() {
                     if (url.startsWith("https://github.com/yc9559/cpufreq-interactive-opt/") && url.contains("vtools-powercfg") && url.endsWith("powercfg.apk")) {
                         val configPath = url.substring(url.indexOf("vtools-powercfg"))
                         DialogHelper.animDialog(AlertDialog.Builder(vtools_online.context)
-                                .setTitle("可用的配置脚本")
-                                .setMessage("在当前页面上检测到可用于性能调节的配置脚本，是否立即将其安装到本地？\n\n配置：$configPath\n\n作者：yc9559\n\n")
-                                .setPositiveButton(R.string.btn_confirm) { _, _ ->
-                                    val configAbsPath = "https://github.com/yc9559/cpufreq-interactive-opt/raw/master/$configPath"
-                                    downloadPowercfg(configAbsPath)
-                                }
-                                .setNeutralButton(R.string.btn_cancel) { _, _ ->
-                                    view.loadUrl(url)
-                                })?.setCancelable(false)
+                            .setTitle("可用的配置脚本")
+                            .setMessage("在当前页面上检测到可用于性能调节的配置脚本，是否立即将其安装到本地？\n\n配置：$configPath\n\n作者：yc9559\n\n")
+                            .setPositiveButton(R.string.btn_confirm) { _, _ ->
+                                val configAbsPath = "https://github.com/yc9559/cpufreq-interactive-opt/raw/master/$configPath"
+                                downloadPowercfg(configAbsPath)
+                            }
+                            .setNeutralButton(R.string.btn_cancel) { _, _ ->
+                                view.loadUrl(url)
+                            }).setCancelable(false)
                     } else if (url.startsWith("https://github.com/yc9559/wipe-v2/releases/download/") && url.endsWith(".zip")) {
                         // v2
                         // https://github.com/yc9559/wipe-v2/releases/download/0.1.190503-dev/sdm625.zip
                         val configPath = url.substring(url.lastIndexOf("/") + 1).replace(".zip", "")
                         DialogHelper.animDialog(AlertDialog.Builder(vtools_online.context)
-                                .setTitle("配置安装提示")
-                                .setMessage("你刚刚点击的内容，似乎是一个可用于性能调节的配置脚本，是否立即将其安装到本地？\n\n配置：$configPath\n\n作者：yc9559\n\n")
-                                .setPositiveButton(R.string.btn_confirm) { _, _ ->
-                                    val configAbsPath = url
-                                    downloadPowercfgV2(configAbsPath)
-                                }
-                                .setNeutralButton(R.string.btn_cancel) { _, _ ->
-                                    view.loadUrl(url)
-                                })?.setCancelable(false)
+                            .setTitle("配置安装提示")
+                            .setMessage("你刚刚点击的内容，似乎是一个可用于性能调节的配置脚本，是否立即将其安装到本地？\n\n配置：$configPath\n\n作者：yc9559\n\n")
+                            .setPositiveButton(R.string.btn_confirm) { _, _ ->
+                                val configAbsPath = url
+                                downloadPowercfgV2(configAbsPath)
+                            }
+                            .setNeutralButton(R.string.btn_cancel) { _, _ ->
+                                view.loadUrl(url)
+                            }).setCancelable(false)
                     } else {
                         view.loadUrl(url)
                     }
@@ -168,11 +168,11 @@ class ActivityAddinOnline : ActivityBase() {
                 }
                 return super.shouldOverrideUrlLoading(view, request)
             }
-        })
+        }
 
         vtools_online.settings.javaScriptEnabled = true
-        vtools_online.settings.setLoadWithOverviewMode(true);
-        vtools_online.settings.setUseWideViewPort(true);
+        vtools_online.settings.loadWithOverviewMode = true
+        vtools_online.settings.useWideViewPort = true
 
         val url = vtools_online.url
         if (url != null) {
@@ -188,7 +188,7 @@ class ActivityAddinOnline : ActivityBase() {
         }
         vtools_online.addJavascriptInterface(object {
             @JavascriptInterface
-            public fun setStatusBarColor(colorStr: String): Boolean {
+            fun setStatusBarColor(colorStr: String): Boolean {
                 try {
                     val color = Color.parseColor(colorStr)
                     vtools_online.post {
@@ -208,7 +208,7 @@ class ActivityAddinOnline : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun setNavigationBarColor(colorStr: String): Boolean {
+            fun setNavigationBarColor(colorStr: String): Boolean {
                 try {
                     val color = Color.parseColor(colorStr)
                     vtools_online.post {
@@ -229,7 +229,7 @@ class ActivityAddinOnline : ActivityBase() {
             }
 
             @JavascriptInterface
-            public fun showToast(str: String) {
+            fun showToast(str: String) {
                 try {
                     vtools_online.post {
                         Toast.makeText(context, str, Toast.LENGTH_LONG).show()
@@ -347,17 +347,17 @@ class ActivityAddinOnline : ActivityBase() {
     private val ACTION_FILE_PATH_CHOOSER = 65400
     private fun chooseFilePath(fileSelectedInterface: ParamsFileChooserRender.FileSelectedInterface): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2);
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
             Toast.makeText(this, getString(R.string.kr_write_external_storage), Toast.LENGTH_LONG).show()
             return false
         } else {
             try {
-                val intent = Intent(Intent.ACTION_GET_CONTENT);
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.setType("*/*")
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                startActivityForResult(intent, ACTION_FILE_PATH_CHOOSER);
+                intent.addCategory(Intent.CATEGORY_OPENABLE)
+                startActivityForResult(intent, ACTION_FILE_PATH_CHOOSER)
                 this.fileSelectedInterface = fileSelectedInterface
-                return true;
+                return true
             } catch (ex: java.lang.Exception) {
                 return false
             }

@@ -53,12 +53,12 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
     }
 
     @SuppressLint("InflateParams")
-    public fun execShell(cmd: String, handler: Handler? = null) {
+    fun execShell(cmd: String, handler: Handler? = null) {
         hideDialog()
 
         val layoutInflater = LayoutInflater.from(context)
         val dialog = layoutInflater.inflate(R.layout.dialog_loading, null)
-        val textView = (dialog.findViewById(R.id.dialog_text) as TextView)
+        val textView: TextView = (dialog.findViewById(R.id.dialog_text))
         textView.text = context.getString(R.string.execute_wait)
         alert = DialogHelper.customDialog(context, dialog, false)
         // AlertDialog.Builder(context).setView(dialog).setCancelable(false).create()
@@ -69,15 +69,15 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
         }
     }
 
-    public fun execShell(sb: StringBuilder, handler: Handler? = null) {
+    fun execShell(sb: StringBuilder, handler: Handler? = null) {
         execShell(sb.toString(), handler)
     }
 
-    public fun isDialogShow(): Boolean {
+    fun isDialogShow(): Boolean {
         return this.alert != null
     }
 
-    public fun hideDialog() {
+    fun hideDialog() {
         try {
             if (alert != null) {
                 alert!!.dismiss()
@@ -95,14 +95,14 @@ open class ProgressBarDialog(private var context: Activity, private var uniqueId
     }
 
     @SuppressLint("InflateParams")
-    public fun showDialog(text: String = "正在加载，请稍等..."): ProgressBarDialog {
+    fun showDialog(text: String = "正在加载，请稍等..."): ProgressBarDialog {
         if (textView != null && alert != null) {
             textView!!.text = text
         } else {
             hideDialog()
             val layoutInflater = LayoutInflater.from(context)
             val dialog = layoutInflater.inflate(R.layout.dialog_loading, null)
-            textView = (dialog.findViewById(R.id.dialog_text) as TextView)
+            textView = (dialog.findViewById<TextView>(R.id.dialog_text)!!)
             textView!!.text = text
             alert = DialogHelper.customDialog(context, dialog, false)
             // AlertDialog.Builder(context).setView(dialog).setCancelable(false).create()
