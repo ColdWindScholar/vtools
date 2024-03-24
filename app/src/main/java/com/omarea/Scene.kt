@@ -85,13 +85,6 @@ class Scene : Application() {
     // 锁屏状态监听
     private lateinit var screenState: ScreenState
 
-    private var lastThemeId = R.style.AppTheme
-    private fun setAppTheme(theme: Int) {
-        if (lastThemeId != theme) {
-            setTheme(theme)
-        }
-    }
-
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         /*
