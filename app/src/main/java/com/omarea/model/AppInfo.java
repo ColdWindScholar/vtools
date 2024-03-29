@@ -1,7 +1,5 @@
 package com.omarea.model;
 
-import android.graphics.drawable.Drawable;
-
 import com.omarea.common.ui.AdapterAppChooser;
 
 /**

@@ -94,7 +94,7 @@ class BatteryReceiver(private var service: Context, override val isAsync: Boolea
 
     }
 
-    private var chargeDisabled: Boolean = PropsUtils.getProp("vtools.bp").equals("1")
+    private var chargeDisabled: Boolean = PropsUtils.getProp("vtools.bp") == "1"
     private var keepShellAsync: KeepShellAsync? = null
 
     private var chargeConfig: SharedPreferences

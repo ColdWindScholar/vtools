@@ -145,12 +145,6 @@ open class ModeSwitcher {
         }
     }
 
-    internal fun setCurrent(powerCfg: String, app: String): ModeSwitcher {
-        setCurrentPowercfg(powerCfg)
-        setCurrentPowercfgApp(app)
-        return this
-    }
-
     internal fun setCurrentPowercfg(powerCfg: String): ModeSwitcher {
         currentPowercfg = powerCfg
         PropsUtils.setPorp("vtools.powercfg", powerCfg)
@@ -272,11 +266,6 @@ open class ModeSwitcher {
             setCurrentPowercfgApp("")
         }
         return this
-    }
-
-    // 是否已经完成指定模式的自定义
-    fun modeReplaced(mode: String): Boolean {
-        return CpuConfigStorage(Scene.context).exists(mode)
     }
 
     // 是否已完成四个模式的配置

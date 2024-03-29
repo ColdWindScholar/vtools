@@ -27,9 +27,6 @@ public class TimingTaskInfo implements Serializable {
     // 任务动作列表（自定义）
     public ArrayList<CustomTaskAction> customTaskActions;
 
-    public TimingTaskInfo() {
-    }
-
     public TimingTaskInfo(String taskId) {
         this.taskId = taskId;
     }

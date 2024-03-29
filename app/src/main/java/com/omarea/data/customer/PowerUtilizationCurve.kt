@@ -3,7 +3,6 @@ package com.omarea.data.customer
 import android.content.Context
 import android.os.BatteryManager
 import android.os.Build
-import android.os.SystemClock
 import com.omarea.data.EventType
 import com.omarea.data.GlobalStatus
 import com.omarea.data.IEventReceiver
@@ -12,7 +11,8 @@ import com.omarea.model.BatteryStatus
 import com.omarea.scene_mode.ModeSwitcher
 import com.omarea.store.BatteryHistoryStore
 import com.omarea.store.SpfConfig
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 class PowerUtilizationCurve(context: Context) : IEventReceiver {
     private val storage = BatteryHistoryStore(context)
