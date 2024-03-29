@@ -15,7 +15,7 @@ import java.util.*
  * Created by helloklf on 2017/12/01.
  */
 class AppListHelper(private val context: Context, private val getTags: Boolean = true) {
-    var packageManager: PackageManager
+    var packageManager: PackageManager = context.packageManager
 
     private fun exclude(packageName: String): Boolean {
         return packageName.contains(".overlay") ||
@@ -63,15 +63,13 @@ class AppListHelper(private val context: Context, private val getTags: Boolean =
      */
     fun checkInstall(backupInfo: PackageInfo): String {
         try {
-            val installInfo = packageManager.getPackageInfo(backupInfo.packageName, 0)
-            if (installInfo == null)
-                return ""
-            if (backupInfo.versionCode == installInfo.versionCode) {
-                return "⭐已安装 "
+            val installInfo = packageManager.getPackageInfo(backupInfo.packageName, 0) ?: return ""
+            return if (backupInfo.versionCode == installInfo.versionCode) {
+                "⭐已安装 "
             } else if (backupInfo.versionCode > installInfo.versionCode) {
-                return "💔已安装旧版 "
+                "💔已安装旧版 "
             } else {
-                return "♻已安装新版 "
+                "♻已安装新版 "
             }
         } catch (e: PackageManager.NameNotFoundException) {
             return ""
@@ -237,11 +235,7 @@ class AppListHelper(private val context: Context, private val getTags: Boolean =
 
         val files = dir.listFiles { name ->
             name.extension.toLowerCase() == "apk"
-        }
-
-        if (files == null) {
-            return list
-        }
+        } ?: return list
 
         for (i in files.indices) {
             val absPath = files[i].absolutePath
@@ -279,7 +273,4 @@ class AppListHelper(private val context: Context, private val getTags: Boolean =
         return null
     }
 
-    init {
-        packageManager = context.packageManager
-    }
 }

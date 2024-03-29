@@ -2,7 +2,6 @@ package com.omarea.library.device;
 
 import android.annotation.SuppressLint;
 import android.opengl.GLSurfaceView;
-import android.util.Log;
 import android.view.ViewGroup;
 
 import javax.microedition.khronos.egl.EGLConfig;
