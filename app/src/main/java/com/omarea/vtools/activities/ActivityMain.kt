@@ -10,8 +10,6 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -29,8 +27,16 @@ import com.omarea.utils.Update
 import com.omarea.vtools.R
 import com.omarea.vtools.dialogs.DialogMonitor
 import com.omarea.vtools.dialogs.DialogPower
-import com.omarea.vtools.fragments.*
-import kotlinx.android.synthetic.main.activity_main.*
+import com.omarea.vtools.fragments.FragmentCpuModes
+import com.omarea.vtools.fragments.FragmentDonate
+import com.omarea.vtools.fragments.FragmentHome
+import com.omarea.vtools.fragments.FragmentNav
+import com.omarea.vtools.fragments.FragmentNotRoot
+import kotlinx.android.synthetic.main.activity_main.action_graph
+import kotlinx.android.synthetic.main.activity_main.action_power
+import kotlinx.android.synthetic.main.activity_main.action_settings
+import kotlinx.android.synthetic.main.activity_main.tab_content
+import kotlinx.android.synthetic.main.activity_main.tab_list
 
 class ActivityMain : ActivityBase() {
     private lateinit var globalSPF: SharedPreferences

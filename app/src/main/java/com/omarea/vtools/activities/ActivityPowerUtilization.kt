@@ -20,11 +20,26 @@ import com.omarea.store.BatteryHistoryStore
 import com.omarea.ui.power.AdapterBatteryStats
 import com.omarea.vtools.R
 import com.omarea.vtools.dialogs.DialogElectricityUnit
-import kotlinx.android.synthetic.main.activity_power_utilization.*
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_capacity
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_max_intput
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_max_intput_text
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_max_output
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_max_output_text
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_max_temperature
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_max_temperature_text
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_size
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_stats
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_status
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_temperature
+import kotlinx.android.synthetic.main.activity_power_utilization.battery_voltage
+import kotlinx.android.synthetic.main.activity_power_utilization.charge_controller
+import kotlinx.android.synthetic.main.activity_power_utilization.electricity_adj_unit
+import kotlinx.android.synthetic.main.activity_power_utilization.more_charge
+import kotlinx.android.synthetic.main.activity_power_utilization.view_time
+import kotlinx.android.synthetic.main.activity_power_utilization.view_time_title
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.*
 import kotlin.math.abs
 
 class ActivityPowerUtilization : ActivityBase() {

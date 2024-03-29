@@ -1,21 +1,16 @@
 package com.omarea.utils
 
 
-import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
-import android.provider.MediaStore
-import android.util.Log
 import android.widget.Toast
-import androidx.core.content.FileProvider
 import com.omarea.common.ui.DialogHelper
 import org.json.JSONObject
 import java.io.BufferedReader
-import java.io.File
 import java.io.InputStreamReader
 import java.net.URL
 
@@ -128,45 +123,5 @@ class Update {
                 .setCancelable(false)
     }
 
-    fun getRealFilePath(context: Context, uri: Uri?): String? {
-        if (null == uri) return null
-        val scheme = uri.scheme
-        var data: String? = null
-        if (scheme == null)
-            data = uri.path
-        else if (ContentResolver.SCHEME_FILE == scheme) {
-            data = uri.path
-        } else if (ContentResolver.SCHEME_CONTENT == scheme) {
-            val cursor = context.contentResolver.query(uri, arrayOf(MediaStore.Images.ImageColumns.DATA), null, null, null)
-            if (null != cursor) {
-                if (cursor.moveToFirst()) {
-                    val index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-                    if (index > -1) {
-                        data = cursor.getString(index)
-                    }
-                }
-                cursor.close()
-            }
-        }
-        return data
-    }
 
-
-    // 安装Apk
-    private fun installApk(context: Context, filePath: String) {
-        try {
-            val i = Intent(Intent.ACTION_VIEW)
-            // i.setDataAndType(Uri.fromFile(File(filePath)), "application/vnd.android.package-archive")
-
-            val fileUri = FileProvider.getUriForFile(context, context.applicationContext.packageName + ".provider", File(filePath))
-            i.setDataAndType(fileUri, "application/vnd.android.package-archive")
-
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(i)
-        } catch (e: Exception) {
-            Log.e("installApk", "" + e.message)
-            // Log.e(TAG, "安装失败")
-            e.printStackTrace()
-        }
-    }
 }
